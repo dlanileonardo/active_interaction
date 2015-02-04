@@ -38,11 +38,25 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <p><a href="http://rubygems.org/gems/active_interaction" title="Gem Version"><img src="https://img.shields.io/gem/v/active_interaction.svg?style=flat" alt="Gem Version"></a>
-<a href="https://travis-ci.org/orgsync/active_interaction" title="Build Status"><img src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?style=flat" alt="Build Status"></a>
-<a href="https://coveralls.io/r/orgsync/active_interaction?branch=master" title="Coverage Status"><img src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?style=flat" alt="Coverage Status"></a>
-<a href="https://codeclimate.com/github/orgsync/active_interaction" title="Code Climate"><img src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?style=flat" alt="Code Climate"></a>
-<a href="https://gemnasium.com/orgsync/active_interaction" title="Dependency Status"><img src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?style=flat" alt="Dependency Status"></a></p>
+        <p align="center"> 
+  <a href="https://rubygems.org/gems/active_interaction">
+    <img alt="Gem Version" src="https://img.shields.io/gem/v/active_interaction.svg?style=flat">
+  </a>
+  <a href="https://travis-ci.org/orgsync/active_interaction">
+    <img alt="Build Status" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?style=flat">
+  </a>
+  <a href="https://coveralls.io/r/orgsync/active_interaction?branch=master">
+    <img alt="Coverage Status" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?style=flat">
+  </a>
+  <a href="https://codeclimate.com/github/orgsync/active_interaction">
+    <img alt="Code Climate" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?style=flat">
+  </a>
+  <a href="https://gemnasium.com/orgsync/active_interaction">
+    <img alt="Dependency Status" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?style=flat">
+  </a>
+
+  </p><hr>
+
 
 <p>At first it seemed alright. A little business logic in a controller
 or model wasn't going to hurt anything. Then one day you wake up
@@ -226,7 +240,7 @@ validate <span class="pl-c1">:arrives_before_departs</span>
 </li>
 </ol>
 
-<p>Check out the <a href="http://rubydoc.info/github/orgsync/active_interaction">documentation</a> for a full list of methods.</p>
+<p>Check out the [documentation][12] for a full list of methods.</p>
 
 <h2>
 <a id="how-do-i-compose-interactions" class="anchor" href="#how-do-i-compose-interactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I compose interactions?</h2>
@@ -264,27 +278,27 @@ into <code>config/locales</code>. So, for example, let's say that (for whatever
 reason) you want to print out everything backwards. Simply add
 translations for ActiveInteraction to your <code>hsilgne</code> locale:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
-<span class="pl-c1">hsilgne:</span>
-  <span class="pl-c1">active_interaction:</span>
-    <span class="pl-c1">types:</span>
-      <span class="pl-c1">array:</span> yarra
-      <span class="pl-c1">boolean:</span> naeloob
-      <span class="pl-c1">date:</span> etad
-      <span class="pl-c1">date_time:</span> emit etad
-      <span class="pl-c1">decimal:</span> lamiced
-      <span class="pl-c1">file:</span> elif
-      <span class="pl-c1">float:</span> taolf
-      <span class="pl-c1">hash:</span> hsah
-      <span class="pl-c1">integer:</span> regetni
-      <span class="pl-c1">model:</span> ledom
-      <span class="pl-c1">string:</span> gnirts
-      <span class="pl-c1">time:</span> emit
-    <span class="pl-c1">errors:</span>
-      <span class="pl-c1">messages:</span>
-        <span class="pl-c1">invalid:</span> dilavni si
-        <span class="pl-c1">invalid_type:</span> <span class="pl-s1"><span class="pl-pds">'</span>%{type} dilav a ton si<span class="pl-pds">'</span></span>
-        <span class="pl-c1">missing:</span> deriuqer si</pre></div>
+<div class="highlight highlight-yaml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
+<span class="pl-s1"><span class="pl-ent">hsilgne:</span></span>
+  <span class="pl-s1"><span class="pl-ent">active_interaction:</span></span>
+    <span class="pl-s1"><span class="pl-ent">types:</span></span>
+      <span class="pl-s1"><span class="pl-ent">array:</span> <span class="pl-s1">yarra</span></span>
+      <span class="pl-s1"><span class="pl-ent">boolean:</span> <span class="pl-s1">naeloob</span></span>
+      <span class="pl-s1"><span class="pl-ent">date:</span> <span class="pl-s1">etad</span></span>
+      <span class="pl-s1"><span class="pl-ent">date_time:</span> <span class="pl-s1">emit etad</span></span>
+      <span class="pl-s1"><span class="pl-ent">decimal:</span> <span class="pl-s1">lamiced</span></span>
+      <span class="pl-s1"><span class="pl-ent">file:</span> <span class="pl-s1">elif</span></span>
+      <span class="pl-s1"><span class="pl-ent">float:</span> <span class="pl-s1">taolf</span></span>
+      <span class="pl-s1"><span class="pl-ent">hash:</span> <span class="pl-s1">hsah</span></span>
+      <span class="pl-s1"><span class="pl-ent">integer:</span> <span class="pl-s1">regetni</span></span>
+      <span class="pl-s1"><span class="pl-ent">model:</span> <span class="pl-s1">ledom</span></span>
+      <span class="pl-s1"><span class="pl-ent">string:</span> <span class="pl-s1">gnirts</span></span>
+      <span class="pl-s1"><span class="pl-ent">time:</span> <span class="pl-s1">emit</span></span>
+    <span class="pl-s1"><span class="pl-ent">errors:</span></span>
+      <span class="pl-s1"><span class="pl-ent">messages:</span></span>
+        <span class="pl-s1"><span class="pl-ent">invalid:</span> <span class="pl-s1">dilavni si</span></span>
+        <span class="pl-s1"><span class="pl-ent">invalid_type:</span> <span class="pl-s1"><span class="pl-pds">'</span>%{type} dilav a ton si<span class="pl-pds">'</span></span></span>
+        <span class="pl-s1"><span class="pl-ent">missing:</span> <span class="pl-s1">deriuqer si</span></span></pre></div>
 
 <p>Then set your locale and run an interaction like normal:</p>
 
@@ -302,6 +316,8 @@ p <span class="pl-s3">Interaction</span>.run.errors.messages
 <p>ActiveInteraction is brought to you by <a href="https://github.com/AaronLasseigne">@AaronLasseigne</a> and
 <a href="https://github.com/tfausak">@tfausak</a> from <a href="https://github.com/orgsync">@orgsync</a>. We were inspired by the fantastic
 work done in <a href="https://github.com/cypriss/mutations">Mutations</a>.</p>
+
+<p>Logo provided free by <a href="http://emojione.com/">Emoji One</a>.</p>
       </section>
 
     </div>
