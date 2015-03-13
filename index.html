@@ -38,247 +38,1142 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <p align="center"> 
+        <p align="center">
+  <img alt="" src="https://a.pomf.se/rfetgu.svg" width="250">
+</p>
+
+<p align="center">
+  ActiveInteraction manages application-specific business logic.
+  It's an implementation of the command pattern in Ruby.
+</p>
+
+<p align="center">
   <a href="https://rubygems.org/gems/active_interaction">
-    <img alt="Gem Version" src="https://img.shields.io/gem/v/active_interaction.svg?style=flat">
+    <img alt="" src="https://img.shields.io/gem/v/active_interaction.svg">
   </a>
   <a href="https://travis-ci.org/orgsync/active_interaction">
-    <img alt="Build Status" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?style=flat">
+    <img alt="" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg">
   </a>
-  <a href="https://coveralls.io/r/orgsync/active_interaction?branch=master">
-    <img alt="Coverage Status" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?style=flat">
+  <a href="https://coveralls.io/r/orgsync/active_interaction">
+    <img alt="" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg">
   </a>
   <a href="https://codeclimate.com/github/orgsync/active_interaction">
-    <img alt="Code Climate" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?style=flat">
+    <img alt="" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg">
   </a>
   <a href="https://gemnasium.com/orgsync/active_interaction">
-    <img alt="Dependency Status" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?style=flat">
+    <img alt="" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg">
   </a>
+</p>
 
-  </p><hr>
+<hr>
 
+<p>ActiveInteraction gives you a place to put your business logic. It also helps
+you write safer code by validating that your inputs conform to your
+expectations. If ActiveModel deals with your nouns, then ActiveInteraction
+handles your verbs.</p>
 
-<p>At first it seemed alright. A little business logic in a controller
-or model wasn't going to hurt anything. Then one day you wake up
-and you're surrounded by fat models and unwieldy controllers. Curled
-up and crying in the corner, you can't help but wonder how it came
-to this.</p>
+<p>Read more on <a href="http://orgsync.github.io/active_interaction/">the project page</a> or check out <a href="http://rubydoc.info/github/orgsync/active_interaction">the full documentation</a>.</p>
 
-<p>Take back control. Slim down models and wrangle monstrous controller
-methods with ActiveInteraction.</p>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li>
+<a href="#basic-usage">Basic usage</a>
 
-<p>Read more on the <a href="http://orgsync.github.io/active_interaction/">project page</a> or check out the full <a href="http://rubydoc.info/github/orgsync/active_interaction">documentation</a>
-on RubyDoc.info.</p>
+<ul>
+<li><a href="#validations">Validations</a></li>
+</ul>
+</li>
+<li>
+<a href="#filters">Filters</a>
+
+<ul>
+<li><a href="#array">Array</a></li>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#file">File</a></li>
+<li><a href="#hash">Hash</a></li>
+<li><a href="#interface">Interface</a></li>
+<li><a href="#model">Model</a></li>
+<li><a href="#string">String</a></li>
+<li><a href="#symbol">Symbol</a></li>
+<li>
+<a href="#dates-and-times">Dates and times</a>
+
+<ul>
+<li><a href="#date">Date</a></li>
+<li><a href="#datetime">DateTime</a></li>
+<li><a href="#time">Time</a></li>
+</ul>
+</li>
+<li>
+<a href="#numbers">Numbers</a>
+
+<ul>
+<li><a href="#decimal">Decimal</a></li>
+<li><a href="#float">Float</a></li>
+<li><a href="#integer">Integer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#rails">Rails</a>
+
+<ul>
+<li>
+<a href="#controller">Controller</a>
+
+<ul>
+<li><a href="#index">Index</a></li>
+<li><a href="#show">Show</a></li>
+<li><a href="#new">New</a></li>
+<li><a href="#create">Create</a></li>
+<li><a href="#destroy">Destroy</a></li>
+<li><a href="#edit">Edit</a></li>
+<li><a href="#update">Update</a></li>
+</ul>
+</li>
+<li><a href="#structure">Structure</a></li>
+</ul>
+</li>
+<li>
+<a href="#advanced-usage">Advanced usage</a>
+
+<ul>
+<li><a href="#callbacks">Callbacks</a></li>
+<li><a href="#composition">Composition</a></li>
+<li><a href="#descriptions">Descriptions</a></li>
+<li><a href="#errors">Errors</a></li>
+<li><a href="#forms">Forms</a></li>
+<li><a href="#predicates">Predicates</a></li>
+<li><a href="#translations">Translations</a></li>
+</ul>
+</li>
+<li><a href="#credits">Credits</a></li>
+</ul>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>This project uses <a href="http://semver.org/spec/v2.0.0.html">semantic versioning</a>.</p>
-
 <p>Add it to your Gemfile:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
 
-<p>And then execute:</p>
+<p>Or install it manually:</p>
 
-<div class="highlight highlight-sh"><pre>$ bundle</pre></div>
+<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s1"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
 
-<p>Or install it yourself with:</p>
+<p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
+detailed list of changes.</p>
 
-<div class="highlight highlight-sh"><pre>$ gem install active_interaction</pre></div>
-
-<h2>
-<a id="what-do-i-get" class="anchor" href="#what-do-i-get" aria-hidden="true"><span class="octicon octicon-link"></span></a>What do I get?</h2>
-
-<p>ActiveInteraction::Base lets you create interaction models. These
-models ensure that certain inputs are provided and that those
-inputs are in the format you want them in. If the inputs are valid
-it will call <code>execute</code>, store the return value of that method in
-<code>result</code>, and return an instance of your ActiveInteraction::Base
-subclass. Let's look at a simple example:</p>
-
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Define an interaction that signs up a user.</span>
-<span class="pl-k">class</span> <span class="pl-en">UserSignup<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  <span class="pl-c"># required</span>
-  string <span class="pl-c1">:email</span>, <span class="pl-c1">:name</span>
-
-  <span class="pl-c"># optional</span>
-  boolean <span class="pl-c1">:newsletter_subscribe</span>, <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
-
-  <span class="pl-c"># ActiveRecord validations</span>
-  validates <span class="pl-c1">:email</span>, <span class="pl-c1">format:</span> <span class="pl-vo">EMAIL_REGEX</span>
-
-  <span class="pl-c"># The execute method is called only if the inputs validate. It</span>
-  <span class="pl-c"># does your business action. The return value will be stored in</span>
-  <span class="pl-c"># `result`.</span>
-  <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    user <span class="pl-k">=</span> <span class="pl-s3">User</span>.create!(<span class="pl-c1">email:</span> email, <span class="pl-c1">name:</span> name)
-    <span class="pl-k">if</span> newsletter_subscribe
-      <span class="pl-s3">NewsletterSubscriptions</span>.create(<span class="pl-c1">email:</span> email, <span class="pl-c1">user_id:</span> user.id)
-    <span class="pl-k">end</span>
-    <span class="pl-s3">UserMailer</span>.async(<span class="pl-c1">:deliver_welcome</span>, user.id)
-    user
-  <span class="pl-k">end</span>
-<span class="pl-k">end</span>
-
-<span class="pl-c"># In a controller action (for instance), you can run it:</span>
-<span class="pl-k">def</span> <span class="pl-en">new</span>
-  <span class="pl-vo">@signup</span> <span class="pl-k">=</span> <span class="pl-s3">UserSignup</span>.<span class="pl-k">new</span>
-<span class="pl-k">end</span>
-
-<span class="pl-k">def</span> <span class="pl-en">create</span>
-  <span class="pl-vo">@signup</span> <span class="pl-k">=</span> <span class="pl-s3">UserSignup</span>.run(params[<span class="pl-c1">:user</span>])
-
-  <span class="pl-c"># Then check to see if it worked:</span>
-  <span class="pl-k">if</span> <span class="pl-vo">@signup</span>.valid?
-    redirect_to welcome_path(<span class="pl-c1">user_id:</span> signup.result.id)
-  <span class="pl-k">else</span>
-    render <span class="pl-c1">action:</span> <span class="pl-c1">:new</span>
-  <span class="pl-k">end</span>
-<span class="pl-k">end</span></pre></div>
-
-<p>You may have noticed that ActiveInteraction::Base quacks like
-ActiveRecord::Base. It can use validations from your Rails application
-and check option validity with <code>valid?</code>. Any errors are added to
-<code>errors</code> which works exactly like an ActiveRecord model. By default,
-everything within the <code>execute</code> method is run in a transaction if
-ActiveRecord is available.</p>
+<p>ActiveInteraction works with all supported versions of Ruby (2.0 through 2.2)
+and ActiveModel (3.2 through 4.2).</p>
 
 <h2>
-<a id="how-do-i-call-an-interaction" class="anchor" href="#how-do-i-call-an-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I call an interaction?</h2>
+<a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic usage</h2>
 
-<p>There are two way to call an interaction. Given UserSignup, you can
-do this:</p>
-
-<div class="highlight highlight-ruby"><pre>outcome <span class="pl-k">=</span> <span class="pl-s3">UserSignup</span>.run(params)
-<span class="pl-k">if</span> outcome.valid?
-  <span class="pl-c"># Do something with outcome.result...</span>
-<span class="pl-k">else</span>
-  <span class="pl-c"># Do something with outcome.errors...</span>
-<span class="pl-k">end</span></pre></div>
-
-<p>Or, you can do this:</p>
-
-<div class="highlight highlight-ruby"><pre>result <span class="pl-k">=</span> <span class="pl-s3">UserSignup</span>.run!(params)
-<span class="pl-c"># Either returns the result of execute,</span>
-<span class="pl-c"># or raises ActiveInteraction::InvalidInteractionError</span></pre></div>
-
-<h2>
-<a id="what-can-i-pass-to-an-interaction" class="anchor" href="#what-can-i-pass-to-an-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>What can I pass to an interaction?</h2>
-
-<p>Interactions only accept a Hash for <code>run</code> and <code>run!</code>.</p>
-
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># A user comments on an article</span>
-<span class="pl-k">class</span> <span class="pl-en">CreateComment<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:article</span>, <span class="pl-c1">:user</span>
-  string <span class="pl-c1">:comment</span>
-
-  validates <span class="pl-c1">:comment</span>, <span class="pl-c1">length:</span> { <span class="pl-c1">maximum:</span> <span class="pl-c1">500</span> }
-
-  <span class="pl-k">def</span> <span class="pl-en">execute</span>; ...; <span class="pl-k">end</span>
-<span class="pl-k">end</span>
-
-<span class="pl-k">def</span> <span class="pl-en">somewhere</span>
-  outcome <span class="pl-k">=</span> <span class="pl-s3">CreateComment</span>.run(
-    <span class="pl-c1">comment:</span> params[<span class="pl-c1">:comment</span>],
-    <span class="pl-c1">article:</span> <span class="pl-s3">Article</span>.find(params[<span class="pl-c1">:article_id</span>]),
-    <span class="pl-c1">user:</span> current_user
-  )
-<span class="pl-k">end</span></pre></div>
-
-<h2>
-<a id="how-do-i-define-an-interaction" class="anchor" href="#how-do-i-define-an-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I define an interaction?</h2>
+<p>To define an interaction, create a subclass of <code>ActiveInteraction::Base</code>. Then
+you need to do two things:</p>
 
 <ol>
-<li>
-<p>Subclass ActiveInteraction::Base</p>
+<li><p><strong>Define your inputs.</strong> Use class filter methods to define what you expect
+your inputs to look like. For instance, if you need a boolean flag for
+pepperoni, use <code>boolean :pepperoni</code>. Check out <a href="#filters">the filters
+section</a> for all the available options.</p></li>
+<li><p><strong>Define your business logic.</strong> Do this by implementing the <code>#execute</code>
+method. Each input you defined will be available as the type you specified.
+If any of the inputs are invalid, <code>#execute</code> won't be run. Filters are
+responsible for type checking your inputs. Check out <a href="#validations">the validations
+section</a> if you need more than that.</p></li>
+</ol>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">YourInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  <span class="pl-c"># ...</span>
+<p>That covers the basics. Let's put it all together into a simple example that
+squares a number.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>
+
+<span class="pl-k">class</span> <span class="pl-en">Square<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  float <span class="pl-c1">:x</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    x<span class="pl-k">**</span><span class="pl-c1">2</span>
+  <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
-</li>
-<li>
-<p>Define your attributes:</p>
 
-<div class="highlight highlight-ruby"><pre>string <span class="pl-c1">:name</span>, <span class="pl-c1">:state</span>
-integer <span class="pl-c1">:age</span>
-boolean <span class="pl-c1">:is_special</span>
-model <span class="pl-c1">:account</span>
-array <span class="pl-c1">:tags</span>, <span class="pl-c1">default:</span> <span class="pl-c1">nil</span> <span class="pl-k">do</span>
-  string
-<span class="pl-k">end</span>
-hash <span class="pl-c1">:prefs</span>, <span class="pl-c1">default:</span> <span class="pl-c1">nil</span> <span class="pl-k">do</span>
-  boolean <span class="pl-c1">:smoking</span>
-  boolean <span class="pl-c1">:view</span>
-<span class="pl-k">end</span>
-date <span class="pl-c1">:arrives_on</span>, <span class="pl-c1">default:</span> <span class="pl-k">-</span><span class="pl-k">&gt;</span> { <span class="pl-s3">Date</span>.current }
-date <span class="pl-c1">:departs_on</span>, <span class="pl-c1">default:</span> <span class="pl-k">-</span><span class="pl-k">&gt;</span> { <span class="pl-s3">Date</span>.tomorrow }</pre></div>
-</li>
-<li>
-<p>Use any additional validations you need:</p>
+<p>Call <code>.run</code> on your interaction to execute it. You must pass a single hash to
+<code>.run</code>. It will return an instance of your interaction. By convention, we call
+this an outcome. You can use the <code>#valid?</code> method to ask the outcome if it's
+valid. If it's invalid, take a look at its errors with <code>#errors</code>. If it's
+valid, <code>#result</code> will be the value returned from <code>#execute</code>.</p>
 
-<div class="highlight highlight-ruby"><pre>validates <span class="pl-c1">:name</span>, <span class="pl-c1">length:</span> { <span class="pl-c1">maximum:</span> <span class="pl-c1">10</span> }
-validates <span class="pl-c1">:state</span>, <span class="pl-c1">inclusion:</span> { <span class="pl-c1">in:</span> <span class="pl-s1"><span class="pl-pds">%w(</span>AL AK AR ... WY<span class="pl-pds">)</span></span> }
-validate <span class="pl-c1">:arrives_before_departs</span>
+<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-s3">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+outcome.valid?
+<span class="pl-c"># =&gt; nil</span>
+outcome.errors.messages
+<span class="pl-c"># =&gt; {:x=&gt;["is not a valid float"]}</span>
+
+outcome <span class="pl-k">=</span> <span class="pl-s3">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+outcome.valid?
+<span class="pl-c"># =&gt; true</span>
+outcome.result
+<span class="pl-c"># =&gt; 4.41</span></pre></div>
+
+<p>You can also use <code>.run!</code> to execute interactions. It's like <code>.run</code> but more
+dangerous. It doesn't return an outcome. If the outcome would be invalid, it
+will instead raise an error. But if the outcome would be valid, it simply
+returns the result.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-s3">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: X is not a valid float</span>
+<span class="pl-s3">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+<span class="pl-c"># =&gt; 4.41</span></pre></div>
+
+<h3>
+<a id="validations" class="anchor" href="#validations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Validations</h3>
+
+<p>ActiveInteraction type checks your inputs. Often you'll want more than that.
+For instance, you may want an input to be a string with at least one
+non-whitespace character. Instead of writing your own validation for that, you
+can use validations from ActiveModel.</p>
+
+<p>These validations aren't provided by ActiveInteraction. They're from
+ActiveModel. You can also use any custom validations you wrote yourself in your
+interactions.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:name</span>
+
+  validates <span class="pl-c1">:name</span>,
+    <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>When you run this interaction, two things will happen. First ActiveInteraction
+will type check your inputs. Then ActiveModel will validate them. If both of
+those are happy, it will be executed.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name is required</span>
+
+<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name can't be blank</span>
+
+<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
+
+<h2>
+<a id="filters" class="anchor" href="#filters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filters</h2>
+
+<p>You can define filters inside an interaction using the appropriate class method.
+Each method has the same signature:</p>
+
+<ul>
+<li><p>Some symbolic names. These are the attributes to create.</p></li>
+<li>
+<p>An optional hash of options. Each filter supports at least these two options:</p>
+
+<ul>
+<li><p><code>default</code> is the fallback value to use if <code>nil</code> is give. To make a filter
+optional, set <code>default: nil</code>.</p></li>
+<li><p><code>desc</code> is a human-readable description of the input. This can be useful for
+generating documentation. For more information about this, read <a href="#descriptions">the
+descriptions section</a>.</p></li>
+</ul>
+</li>
+<li><p>An optional block of sub-filters. Only <a href="#array">array</a> and <a href="#hash">hash</a>
+filters support this. Other filters will ignore blocks when given to them.</p></li>
+</ul>
+
+<p>Let's take a look at an example filter. It defines three inputs: <code>x</code>, <code>y</code>, and
+<code>z</code>. Those inputs are optional and they all share the same description ("an
+example filter").</p>
+
+<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>, <span class="pl-c1">:z</span>,
+  <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>,
+  <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>an example filter<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+    <span class="pl-c"># Some filters support sub-filters here.</span>
+  <span class="pl-k">end</span></pre></div>
+
+<p>In general, filters accept values of the type the correspond to, plus a few
+alternatives that can be reasonably coerced. Typically the coercions come from
+Rails, so <code>"1"</code> can be interpreted as the boolean value <code>true</code>, the string
+<code>"1"</code>, or the number <code>1</code>.</p>
+
+<h3>
+<a id="array" class="anchor" href="#array" aria-hidden="true"><span class="octicon octicon-link"></span></a>Array</h3>
+
+<p>In addition to accepting arrays, array inputs will convert
+<code>ActiveRecord::Relation</code>s into arrays.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">ArrayInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  array <span class="pl-c1">:toppings</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    toppings.size
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> <span class="pl-s1"><span class="pl-pds">'</span>everything<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Toppings is not a valid array</span>
+<span class="pl-s3">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> [<span class="pl-c1">:cheese</span>, <span class="pl-s1"><span class="pl-pds">'</span>pepperoni<span class="pl-pds">'</span></span>])
+<span class="pl-c"># =&gt; 2</span></pre></div>
+
+<p>Use a block to constrain the types of elements an array can contain.</p>
+
+<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:birthdays</span> <span class="pl-k">do</span>
+  date
+<span class="pl-k">end</span></pre></div>
+
+<p>Note that filters inside an array block don't have names. Also you can only
+have one filter inside an array block.</p>
+
+<h3>
+<a id="boolean" class="anchor" href="#boolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>Boolean</h3>
+
+<p>Boolean filters convert the strings <code>"1"</code> and <code>"true"</code> (case-insensitive) into
+<code>true</code>. They also convert <code>"0"</code> and <code>"false"</code> into <code>false</code>.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">BooleanInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  boolean <span class="pl-c1">:kool_aid</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>Oh yeah!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> kool_aid
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">1</span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Kool aid is not a valid boolean</span>
+<span class="pl-s3">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">true</span>)
+<span class="pl-c"># =&gt; "Oh yeah!"</span></pre></div>
+
+<h3>
+<a id="file" class="anchor" href="#file" aria-hidden="true"><span class="octicon octicon-link"></span></a>File</h3>
+
+<p>File filters also accept <code>TempFile</code>s and anything that responds to <code>#tempfile</code>.
+That means that you can pass the <code>params</code> from uploading files via forms in
+Rails.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FileInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  file <span class="pl-c1">:readme</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    readme.size
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-s1"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Readme is not a valid file</span>
+<span class="pl-s3">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-s3">File</span>.open(<span class="pl-s1"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>))
+<span class="pl-c"># =&gt; 21563</span></pre></div>
+
+<h3>
+<a id="hash" class="anchor" href="#hash" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hash</h3>
+
+<p>Hash filters accept hashes. The expected value types are given by passing a
+block and nesting other filters. You can have any number of filters inside a
+hash, including other hashes.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">HashInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  hash <span class="pl-c1">:preferences</span> <span class="pl-k">do</span>
+    boolean <span class="pl-c1">:newsletter</span>
+    boolean <span class="pl-c1">:sweepstakes</span>
+  <span class="pl-k">end</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    puts <span class="pl-s1"><span class="pl-pds">'</span>Thanks for joining the newsletter!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:newsletter</span>]
+    puts <span class="pl-s1"><span class="pl-pds">'</span>Good luck in the sweepstakes!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:sweepstakes</span>]
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> <span class="pl-s1"><span class="pl-pds">'</span>yes, no<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Preferences is not a valid hash</span>
+<span class="pl-s3">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> { <span class="pl-c1">newsletter:</span> <span class="pl-c1">true</span>, <span class="pl-s1"><span class="pl-pds">'</span>sweepstakes<span class="pl-pds">'</span></span> =&gt; <span class="pl-c1">false</span> })
+<span class="pl-c"># Thanks for joining the newsletter!</span>
+<span class="pl-c"># =&gt; nil</span></pre></div>
+
+<p>Setting default hash values can be tricky. The default value has to be either
+<code>nil</code> or <code>{}</code>. Use <code>nil</code> to make the hash optional. Use <code>{}</code> if you want to set
+some defaults for values inside the hash.</p>
+
+<div class="highlight highlight-rb"><pre>hash <span class="pl-c1">:optional</span>,
+  <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
+<span class="pl-c"># =&gt; {:optional=&gt;nil}</span>
+
+hash <span class="pl-c1">:with_defaults</span>,
+  <span class="pl-c1">default:</span> {} <span class="pl-k">do</span>
+    boolean <span class="pl-c1">:likes_cookies</span>,
+      <span class="pl-c1">default:</span> <span class="pl-c1">true</span>
+  <span class="pl-k">end</span>
+<span class="pl-c"># =&gt; {:with_defaults=&gt;{:likes_cookies=&gt;true}}</span></pre></div>
+
+<p>By default, hashes remove any keys that aren't given as nested filters. To
+allow all hash keys, set <code>strip: false</code>. In general we don't recommend doing
+this, but it's sometimes necessary.</p>
+
+<div class="highlight highlight-rb"><pre>hash <span class="pl-c1">:stuff</span>,
+  <span class="pl-c1">strip:</span> <span class="pl-c1">false</span></pre></div>
+
+<h3>
+<a id="interface" class="anchor" href="#interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interface</h3>
+
+<p>Interface filters allow you to specify that an object must respond to a certain
+set of methods. This allows you to do duck typing with interactions.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">InterfaceInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  interface <span class="pl-c1">:serializer</span>,
+    <span class="pl-c1">methods:</span> <span class="pl-k">%</span>i[dump load]
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    input <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>{ "is_json" : true }<span class="pl-pds">'</span></span>
+    object <span class="pl-k">=</span> serializer.load(input)
+    output <span class="pl-k">=</span> serializer.dump(object)
+
+    output
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>json<span class="pl-pds">'</span></span>
+
+<span class="pl-s3">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-s3">Object</span>.<span class="pl-k">new</span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Serializer is not a valid interface</span>
+<span class="pl-s3">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-vo">JSON</span>)
+<span class="pl-c"># =&gt; "{\"is_json\":true}"</span></pre></div>
+
+<h3>
+<a id="model" class="anchor" href="#model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model</h3>
+
+<p>Model filters allow you to require an instance of a particular class. It checks
+either <code>#is_a?</code> on the instance or <code>.===</code> on the class. Because of that, it
+also works with classes that have mixed modules in with <code>include</code>.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Cow</span>
+  <span class="pl-k">def</span> <span class="pl-en">moo</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>Moo!<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-k">class</span> <span class="pl-en">ModelInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  model <span class="pl-c1">:cow</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    cow.moo
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-s3">Object</span>.<span class="pl-k">new</span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Cow is not a valid model</span>
+<span class="pl-s3">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-s3">Cow</span>.<span class="pl-k">new</span>)
+<span class="pl-c"># =&gt; "Moo!"</span></pre></div>
+
+<p>The class name is automatically determined by the filter name. If your filter
+name is different than your class name, use the <code>class</code> option. It can be
+either the class, a string, or a symbol.</p>
+
+<div class="highlight highlight-rb"><pre>model <span class="pl-c1">:dolly1</span>,
+  <span class="pl-c1">class:</span> <span class="pl-vo">Sheep</span>
+model <span class="pl-c1">:dolly2</span>,
+  <span class="pl-c1">class:</span> <span class="pl-s1"><span class="pl-pds">'</span>Sheep<span class="pl-pds">'</span></span>
+model <span class="pl-c1">:dolly3</span>,
+  <span class="pl-c1">class:</span> <span class="pl-c1">:Sheep</span></pre></div>
+
+<h3>
+<a id="string" class="anchor" href="#string" aria-hidden="true"><span class="octicon octicon-link"></span></a>String</h3>
+
+<p>String filters define inputs that only accept strings.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">StringInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:name</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">StringInteraction</span>.run!(<span class="pl-c1">name:</span> 0xDEADBEEF)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name is not a valid string</span>
+<span class="pl-s3">StringInteraction</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
+
+<p>If you want to strip leading and trailing whitespace from a string, set the
+<code>strip</code> option to <code>true</code>.</p>
+
+<div class="highlight highlight-rb"><pre>string <span class="pl-c1">:comment</span>,
+  <span class="pl-c1">strip:</span> <span class="pl-c1">true</span></pre></div>
+
+<h3>
+<a id="symbol" class="anchor" href="#symbol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Symbol</h3>
+
+<p>Symbol filters define inputs that accept symbols. Strings will be converted
+into symbols.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SymbolInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  symbol <span class="pl-c1">:method</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    method.to_proc
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-k">-</span><span class="pl-k">&gt;</span> {})
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Method is not a valid symbol</span>
+<span class="pl-s3">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-c1">:object_id</span>)
+<span class="pl-c"># =&gt; #&lt;Proc:0x007fdc9ba94118&gt;</span></pre></div>
+
+<h3>
+<a id="dates-and-times" class="anchor" href="#dates-and-times" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dates and times</h3>
+
+<p>Filters that work with dates and times behave similarly. By default, they all
+convert strings into their expected data types using <code>.parse</code>. If you give the
+<code>format</code> option, they will instead convert strings using <code>.strptime</code>. Note that
+formats won't work with <code>DateTime</code> and <code>Time</code> filters if a time zone is set.</p>
+
+<h4>
+<a id="date" class="anchor" href="#date" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DateInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  date <span class="pl-c1">:birthday</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    birthday <span class="pl-k">+</span> (<span class="pl-c1">18</span> <span class="pl-k">*</span> <span class="pl-c1">365</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-s1"><span class="pl-pds">'</span>yesterday<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Birthday is not a valid date</span>
+<span class="pl-s3">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-s3">Date</span>.<span class="pl-k">new</span>(<span class="pl-c1">1989</span>, <span class="pl-c1">9</span>, <span class="pl-c1">1</span>))
+<span class="pl-c"># =&gt; #&lt;Date: 2007-08-28 ((2454341j,0s,0n),+0s,2299161j)&gt;</span></pre></div>
+
+<div class="highlight highlight-rb"><pre>date <span class="pl-c1">:birthday</span>,
+  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%d<span class="pl-pds">'</span></span></pre></div>
+
+<h4>
+<a id="datetime" class="anchor" href="#datetime" aria-hidden="true"><span class="octicon octicon-link"></span></a>DateTime</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DateTimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  date_time <span class="pl-c1">:now</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    now.iso8601
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-s1"><span class="pl-pds">'</span>now<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Now is not a valid date time</span>
+<span class="pl-s3">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-s3">DateTime</span>.now)
+<span class="pl-c"># =&gt; "2015-03-11T11:04:40-05:00"</span></pre></div>
+
+<div class="highlight highlight-rb"><pre>date_time <span class="pl-c1">:start</span>,
+  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
+
+<h4>
+<a id="time" class="anchor" href="#time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time</h4>
+
+<p>In addition to converting strings with <code>.parse</code> (or <code>.strptime</code>), time filters
+convert numbers with <code>.at</code>.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">TimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  time <span class="pl-c1">:epoch</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-s3">Time</span>.now <span class="pl-k">-</span> epoch
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-s1"><span class="pl-pds">'</span>a long, long time ago<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Epoch is not a valid time</span>
+<span class="pl-s3">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-s3">Time</span>.<span class="pl-k">new</span>(<span class="pl-c1">1970</span>))
+<span class="pl-c"># =&gt; 1426068362.5136619</span></pre></div>
+
+<div class="highlight highlight-rb"><pre>time <span class="pl-c1">:start</span>,
+  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
+
+<h3>
+<a id="numbers" class="anchor" href="#numbers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Numbers</h3>
+
+<p>All numeric filters accept numeric input. They will also convert strings using
+the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
+
+<h4>
+<a id="decimal" class="anchor" href="#decimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decimal</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DecimalInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  decimal <span class="pl-c1">:price</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    price <span class="pl-k">*</span> <span class="pl-c1">1.0825</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-s1"><span class="pl-pds">'</span>one ninety-nine<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Price is not a valid decimal</span>
+<span class="pl-s3">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-s3">BigDecimal</span>.<span class="pl-k">new</span>(<span class="pl-c1">1.99</span>, <span class="pl-c1">2</span>))
+<span class="pl-c"># =&gt; #&lt;BigDecimal:7fe792a42028,'0.2165E1',18(45)&gt;</span></pre></div>
+
+<p>To specify the number of significant digits, use the <code>digits</code> option.</p>
+
+<div class="highlight highlight-rb"><pre>decimal <span class="pl-c1">:dollars</span>,
+  <span class="pl-c1">digits:</span> <span class="pl-c1">2</span></pre></div>
+
+<h4>
+<a id="float" class="anchor" href="#float" aria-hidden="true"><span class="octicon octicon-link"></span></a>Float</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FloatInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  float <span class="pl-c1">:x</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    x<span class="pl-k">**</span><span class="pl-c1">2</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: X is not a valid float</span>
+<span class="pl-s3">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+<span class="pl-c"># =&gt; 4.41</span></pre></div>
+
+<h4>
+<a id="integer" class="anchor" href="#integer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integer</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">IntegerInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  integer <span class="pl-c1">:limit</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    limit.downto(<span class="pl-c1">0</span>).to_a
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-s1"><span class="pl-pds">'</span>ten<span class="pl-pds">'</span></span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Limit is not a valid integer</span>
+<span class="pl-s3">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-c1">10</span>)
+<span class="pl-c"># =&gt; [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</span></pre></div>
+
+<h2>
+<a id="rails" class="anchor" href="#rails" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rails</h2>
+
+<p>ActiveInteraction plays nicely with Rails. You can use interactions to handle
+your business logic instead of models or controllers. To see how it all works,
+let's take a look at a complete example of a controller with the typical
+resourceful actions.</p>
+
+<h3>
+<a id="controller" class="anchor" href="#controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Controller</h3>
+
+<h4>
+<a id="index" class="anchor" href="#index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h4>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts</span>
+<span class="pl-k">def</span> <span class="pl-en">index</span>
+  <span class="pl-vo">@accounts</span> <span class="pl-k">=</span> <span class="pl-s3">ListAccounts</span>.run!
+<span class="pl-k">end</span></pre></div>
+
+<p>Since we're not passing any inputs to <code>ListAccounts</code>, it makes sense to use
+<code>.run!</code> instead of <code>.run</code>. If it failed, that would mean we probably messed up
+writing the interaction.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">ListAccounts<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-s3">Account</span>.not_deleted.order(<span class="pl-c1">last_name:</span> <span class="pl-c1">:asc</span>, <span class="pl-c1">first_name:</span> <span class="pl-c1">:asc</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<h4>
+<a id="show" class="anchor" href="#show" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show</h4>
+
+<p>Up next is the show action. For this one we'll define a helper method to handle
+raising the correct errors. We have to do this because calling <code>.run!</code> would
+raise an <code>ActiveInteraction::InvalidInteractionError</code> instead of an
+<code>ActiveRecord::RecordNotFound</code>. That means Rails would render a 500 instead of
+a 404.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id</span>
+<span class="pl-k">def</span> <span class="pl-en">show</span>
+  <span class="pl-vo">@account</span> <span class="pl-k">=</span> find_account!
+<span class="pl-k">end</span>
 
 <span class="pl-k">private</span>
 
-<span class="pl-k">def</span> <span class="pl-en">arrive_before_departs</span>
-  <span class="pl-k">if</span> departs_on <span class="pl-k">&lt;=</span> arrives_on
-    errors.add(<span class="pl-c1">:departs_on</span>, <span class="pl-s1"><span class="pl-pds">'</span>must come after the arrival time<span class="pl-pds">'</span></span>)
+<span class="pl-k">def</span> <span class="pl-en">find_account!</span>
+  outcome <span class="pl-k">=</span> <span class="pl-s3">FindAccount</span>.run(params)
+
+  <span class="pl-k">if</span> outcome.valid?
+    outcome.result
+  <span class="pl-k">else</span>
+    fail <span class="pl-s3">ActiveRecord</span>::<span class="pl-vo">RecordNotFound</span>, outcome.errors.full_messages.to_sentence
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
-</li>
-<li>
-<p>Define your execute method. It can return whatever you like:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
-  record <span class="pl-k">=</span> do_thing(...)
-  <span class="pl-c"># ...</span>
-  record
+<p>This probably looks a little different than you're used to. Rails commonly
+handles this with a <code>before_filter</code> that sets the <code>@account</code> instance variable.
+Why is all this interaction code better? Two reasons: One, you can reuse the
+<code>FindAccount</code> interaction in other places, like your API controller or a Resque
+task. And two, if you want to change how accounts are found, you only have to
+change one place.</p>
+
+<p>Inside the interaction, we could use <code>#find</code> instead of <code>#find_by_id</code>. That way
+we wouldn't need the <code>#find_account!</code> helper method in the controller because
+the error would bubble all the way up. However, you should try to avoid raising
+errors from interactions. If you do, you'll have to deal with raised exceptions
+as well as the validity of the outcome.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FindAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  integer <span class="pl-c1">:id</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    account <span class="pl-k">=</span> <span class="pl-s3">Account</span>.not_deleted.find_by_id(id)
+
+    <span class="pl-k">if</span> account
+      account
+    <span class="pl-k">else</span>
+      errors.add(<span class="pl-c1">:id</span>, <span class="pl-s1"><span class="pl-pds">'</span>does not exist<span class="pl-pds">'</span></span>)
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
-</li>
-</ol>
 
-<p>Check out the [documentation][12] for a full list of methods.</p>
+<p>Note that it's perfectly fine to add errors during execution. Not all errors
+have to come from type checking or validation.</p>
+
+<h4>
+<a id="new" class="anchor" href="#new" aria-hidden="true"><span class="octicon octicon-link"></span></a>New</h4>
+
+<p>The new action will be a little different than the ones we've looked at so far.
+Instead of calling <code>.run</code> or <code>.run!</code>, it's going to initialize a new
+interaction. This is possible because interactions behave like ActiveModels.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
+<span class="pl-k">def</span> <span class="pl-en">new</span>
+  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.<span class="pl-k">new</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Since interactions behave like ActiveModels, we can use ActiveModel validations
+with them. We'll use validations here to make sure that the first and last
+names are not blank. <a href="#validations">The validations section</a> goes into more
+detail about this.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>
+
+  validates <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>,
+    <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">to_model</span>
+    <span class="pl-s3">Account</span>.<span class="pl-k">new</span>
+  <span class="pl-k">end</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    account <span class="pl-k">=</span> <span class="pl-s3">Account</span>.<span class="pl-k">new</span>(inputs)
+
+    <span class="pl-k">if</span> account.save
+      account
+    <span class="pl-k">else</span>
+      errors.merge(account.errors)
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>We used a couple of advanced features here. The <code>#to_model</code> method helps
+determine the correct form to use in the view. Check out <a href="#forms">the section on
+forms</a> for more about that. Inside <code>#execute</code>, we merge errors. This is
+a convenient way to move errors from one object to another. Read more about it
+in <a href="#errors">the errors section</a>.</p>
+
+<h4>
+<a id="create" class="anchor" href="#create" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create</h4>
+
+<p>The create action has a lot in common with the new action. Both of them use the
+<code>CreateAccount</code> interaction. And if creating the account fails, this action
+falls back to rendering the new action.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># POST /accounts</span>
+<span class="pl-k">def</span> <span class="pl-en">create</span>
+  outcome <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
+
+  <span class="pl-k">if</span> outcome.valid?
+    redirect_to(outcome.result)
+  <span class="pl-k">else</span>
+    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    render(<span class="pl-c1">:new</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Note that we have to pass a hash to <code>.run</code>. Passing <code>nil</code> is an error.</p>
+
+<p>Since we're using an interaction, we don't need strong parameters. The
+interaction will ignore any inputs that weren't defined by filters. So you can
+forget about <code>params.require</code> and <code>params.permit</code> because interactions handle
+that for you.</p>
+
+<h4>
+<a id="destroy" class="anchor" href="#destroy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Destroy</h4>
+
+<p>The destroy action will reuse the <code>#find_account!</code> helper method we wrote
+earlier.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># DELETE /accounts/:id</span>
+<span class="pl-k">def</span> <span class="pl-en">destroy</span>
+  <span class="pl-s3">DestroyAccount</span>.run!(<span class="pl-c1">account:</span> find_account!)
+  redirect_to(accounts_url)
+<span class="pl-k">end</span></pre></div>
+
+<p>In this simple example, the destroy interaction doesn't do much. It's not clear
+that you gain anything by putting it in an interaction. But in the future, when
+you need to do more than <code>account.destroy</code>, you'll only have to update one
+spot.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DestroyAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  model <span class="pl-c1">:account</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    account.destroy
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<h4>
+<a id="edit" class="anchor" href="#edit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Edit</h4>
+
+<p>Just like the destroy action, editing uses the <code>#find_account!</code> helper. Then it
+creates a new interaction instance to use as a form object.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id/edit</span>
+<span class="pl-k">def</span> <span class="pl-en">edit</span>
+  account <span class="pl-k">=</span> find_account!
+  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">UpdateAccount</span>.<span class="pl-k">new</span>(
+    <span class="pl-c1">account:</span> account,
+    <span class="pl-c1">first_name:</span> account.first_name,
+    <span class="pl-c1">last_name:</span> account.last_name)
+<span class="pl-k">end</span></pre></div>
+
+<p>The interaction that updates accounts is more complicated than the others. It
+requires an account to update, but the other inputs are optional. If they're
+missing, it'll ignore those attributes. If they're present, it'll update them.</p>
+
+<p>ActiveInteraction generates predicate methods (like <code>#first_name?</code>) for your
+inputs. They will return <code>false</code> if the input is <code>nil</code> and <code>true</code> otherwise.
+Skip to <a href="#predicates">the predicates section</a> for more information about them.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  model <span class="pl-c1">:account</span>
+
+  string <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>,
+    <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
+
+  validates <span class="pl-c1">:first_name</span>,
+    <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>,
+    <span class="pl-c1">if:</span> <span class="pl-c1">:first_name?</span>
+  validates <span class="pl-c1">:last_name</span>,
+    <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>,
+    <span class="pl-c1">if:</span> <span class="pl-c1">:last_name?</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    account.first_name <span class="pl-k">=</span> first_name <span class="pl-k">if</span> first_name?
+    account.last_name <span class="pl-k">=</span> last_name <span class="pl-k">if</span> last_name?
+
+    <span class="pl-k">if</span> account.save
+      account
+    <span class="pl-k">else</span>
+      errors.merge(account.errors)
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<h4>
+<a id="update" class="anchor" href="#update" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update</h4>
+
+<p>Hopefully you've gotten the hang of this by now. We'll use <code>#find_account!</code> to
+get the account. Then we'll build up the inputs for <code>UpdateAccount</code>. Then we'll
+run the interaction and either redirect to the updated account or back to the
+edit page.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># PUT /accounts/:id</span>
+<span class="pl-k">def</span> <span class="pl-en">update</span>
+  inputs <span class="pl-k">=</span> { <span class="pl-c1">account:</span> find_account! }.reverse_merge(params[<span class="pl-c1">:account</span>])
+  outcome <span class="pl-k">=</span> <span class="pl-s3">UpdateAccount</span>.run(inputs)
+
+  <span class="pl-k">if</span> outcome.valid?
+    redirect_to(outcome.result)
+  <span class="pl-k">else</span>
+    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    render(<span class="pl-c1">:edit</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="structure" class="anchor" href="#structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Structure</h3>
+
+<p>We recommend putting your interactions in <code>app/interactions</code>. It's also very
+helpful to group them by model. That way you can look in
+<code>app/interactions/accounts</code> for all the ways you can interact with accounts.</p>
+
+<pre><code>- app/
+  - controllers/
+    - accounts_controller.rb
+  - interactions/
+    - accounts/
+      - create_account.rb
+      - destroy_account.rb
+      - find_account.rb
+      - list_accounts.rb
+      - update_account.rb
+  - models/
+    - account.rb
+  - views/
+    - account/
+      - edit.html.erb
+      - index.html.erb
+      - new.html.erb
+      - show.html.erb
+</code></pre>
 
 <h2>
-<a id="how-do-i-compose-interactions" class="anchor" href="#how-do-i-compose-interactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I compose interactions?</h2>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced usage</h2>
 
-<p>You can run interactions from within other interactions by calling <code>compose</code>.
-If the interaction is successful, it'll return the result (just like if you had
-called it with <code>run!</code>). If something went wrong, execution will halt
-immediately and the errors will be moved onto the caller.</p>
+<h3>
+<a id="callbacks" class="anchor" href="#callbacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Callbacks</h3>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">AddThree<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<p>ActiveModel provides a powerful framework for defining callbacks.
+ActiveInteraction hooks into that framework to allow hooking into various parts
+of an interaction's lifecycle.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Increment<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  set_callback <span class="pl-c1">:type_check</span>, <span class="pl-c1">:before</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s1"><span class="pl-pds">'</span>before type check<span class="pl-pds">'</span></span> }
+
   integer <span class="pl-c1">:x</span>
+
+  set_callback <span class="pl-c1">:validate</span>, <span class="pl-c1">:after</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s1"><span class="pl-pds">'</span>after validate<span class="pl-pds">'</span></span> }
+
+  validates <span class="pl-c1">:x</span>,
+    <span class="pl-c1">numericality:</span> { <span class="pl-c1">greater_than_or_equal_to:</span> <span class="pl-c1">0</span> }
+
+  set_callback <span class="pl-c1">:execute</span>, <span class="pl-c1">:around</span>, lambda { |<span class="pl-vo">_interaction</span>, <span class="pl-vo">block</span>|
+    puts <span class="pl-s1"><span class="pl-pds">'</span>&gt;&gt;&gt;<span class="pl-pds">'</span></span>
+    block.call
+    puts <span class="pl-s1"><span class="pl-pds">'</span>&lt;&lt;&lt;<span class="pl-pds">'</span></span>
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    puts <span class="pl-s1"><span class="pl-pds">'</span>executing<span class="pl-pds">'</span></span>
+    x <span class="pl-k">+</span> <span class="pl-c1">1</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">Increment</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">1</span>)
+<span class="pl-c"># before type check</span>
+<span class="pl-c"># after validate</span>
+<span class="pl-c"># &gt;&gt;&gt;</span>
+<span class="pl-c"># executing</span>
+<span class="pl-c"># &lt;&lt;&lt;</span>
+<span class="pl-c"># =&gt; 2</span></pre></div>
+
+<p>In order, the available callbacks are <code>type_check</code>, <code>validate</code>, and <code>execute</code>.
+You can set <code>before</code>, <code>after</code>, or <code>around</code> on any of them.</p>
+
+<h3>
+<a id="composition" class="anchor" href="#composition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Composition</h3>
+
+<p>You can run interactions from within other interactions with <code>#compose</code>. If the
+interaction is successful, it'll return the result (just like if you had called
+it with <code>.run!</code>). If something went wrong, execution will halt immediately and
+the errors will be moved onto the caller.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Add<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  integer <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    x <span class="pl-k">+</span> y
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-k">class</span> <span class="pl-en">AddThree<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  integer <span class="pl-c1">:x</span>
+
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     compose(<span class="pl-vo">Add</span>, <span class="pl-c1">x:</span> x, <span class="pl-c1">y:</span> <span class="pl-c1">3</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
+
 <span class="pl-s3">AddThree</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">5</span>)
 <span class="pl-c"># =&gt; 8</span></pre></div>
 
-<p>To bring in filters from another interaction, use <code>import_filters</code>. Combined
+<p>To bring in filters from another interaction, use <code>.import_filters</code>. Combined
 with <code>inputs</code>, delegating to another interaction is a piece of cake.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">AddAndDouble<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">AddAndDouble<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   import_filters <span class="pl-vo">Add</span>
+
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     compose(<span class="pl-vo">Add</span>, inputs) <span class="pl-k">*</span> <span class="pl-c1">2</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
-<h2>
-<a id="how-do-i-translate-an-interaction" class="anchor" href="#how-do-i-translate-an-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I translate an interaction?</h2>
+<h3>
+<a id="descriptions" class="anchor" href="#descriptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Descriptions</h3>
 
-<p>ActiveInteraction is i18n-aware out of the box! All you have to do
-is add translations to your project. In Rails, they typically go
-into <code>config/locales</code>. So, for example, let's say that (for whatever
-reason) you want to print out everything backwards. Simply add
-translations for ActiveInteraction to your <code>hsilgne</code> locale:</p>
+<p>Use the <code>desc</code> option to provide human-readable descriptions of filters. You
+should prefer these to comments because they can be used to generate
+documentation. The interaction class has a <code>.filters</code> method that returns a
+hash of filters. Each filter has a <code>#desc</code> method that returns the description.</p>
 
-<div class="highlight highlight-yaml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Descriptive<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:first_name</span>,
+    <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>your first name<span class="pl-pds">'</span></span>
+  string <span class="pl-c1">:last_name</span>,
+    <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>your last name<span class="pl-pds">'</span></span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">Descriptive</span>.filters.each <span class="pl-k">do </span>|<span class="pl-vo">name</span>, <span class="pl-vo">filter</span>|
+  puts <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>: <span class="pl-pse">#{</span><span class="pl-s2">filter.desc</span><span class="pl-pse"><span class="pl-s2">}</span></span><span class="pl-pds">"</span></span>
+<span class="pl-k">end</span>
+<span class="pl-c"># first_name: your first name</span>
+<span class="pl-c"># last_name: your last name</span></pre></div>
+
+<h3>
+<a id="errors" class="anchor" href="#errors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Errors</h3>
+
+<p>ActiveInteraction provides symbolic errors for easier introspection and testing
+of errors. Symbolic errors improve on regular errors by adding a symbol that
+represents the type of error that has occurred. Let's look at an example where
+an item is purchased using a credit card.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">BuyItem<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  model <span class="pl-c1">:credit_card</span>, <span class="pl-c1">:item</span>
+  hash <span class="pl-c1">:options</span> <span class="pl-k">do</span>
+    boolean <span class="pl-c1">:gift_wrapped</span>
+  <span class="pl-k">end</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    order <span class="pl-k">=</span> credit_card.purchase(item)
+    notify(credit_card.account)
+    order
+  <span class="pl-k">end</span>
+
+  <span class="pl-k">private</span> <span class="pl-k">def</span> <span class="pl-en">notify</span>(<span class="pl-vpf">account</span>)
+    <span class="pl-c"># ...</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Having missing or invalid inputs causes the interaction to fail and return
+errors.</p>
+
+<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-s3">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s1"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s1"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
+outcome.errors.messages
+<span class="pl-c"># =&gt; {:credit_card=&gt;["is required"], :item=&gt;["is not a valid model"], :options=&gt;["has an invalid nested value (\"gift_wrapped\" =&gt; \"yes\")"]}</span></pre></div>
+
+<p>Determining the type of error based on the string is difficult if not
+impossible. Calling <code>#symbolic</code> instead of <code>#messages</code> on <code>errors</code> gives you
+the same list of errors with a testable label representing the error.</p>
+
+<div class="highlight highlight-rb"><pre>outcome.errors.symbolic
+<span class="pl-c"># =&gt; {"credit_card"=&gt;[:missing], "item"=&gt;[:invalid_type], "options"=&gt;[:invalid_nested]}</span></pre></div>
+
+<p>Symbolic errors can also be manually added during the execute call by calling
+<code>#add_sym</code> instead of <code>#add</code> on <code>errors</code>. It works the same way as <code>add</code> except
+that the second argument is the error label.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
+  errors.add_sym(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>, <span class="pl-s1"><span class="pl-pds">'</span>You shall not pass!<span class="pl-pds">'</span></span>)
+<span class="pl-k">end</span></pre></div>
+
+<p>ActiveInteraction also supports merging errors. This is useful if you want to
+delegate validation to some other object. For example, if you have an
+interaction that updates a record, you might want that record to validate
+itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can do exactly that.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateThing<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  model <span class="pl-c1">:thing</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-k">if</span> thing.save
+      thing
+    <span class="pl-k">else</span>
+      errors.merge!(thing.errors)
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<h3>
+<a id="forms" class="anchor" href="#forms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Forms</h3>
+
+<p>The outcome returned by <code>.run</code> can be used in forms as though it were an ActiveModel object. You can also create a form object by calling <code>.new</code> on the interaction.</p>
+
+<p>Given an application with an <code>Account</code> model we'll create a new <code>Account</code> using the <code>CreateAccount</code> interaction.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
+<span class="pl-k">def</span> <span class="pl-en">new</span>
+  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.<span class="pl-k">new</span>
+<span class="pl-k">end</span>
+
+<span class="pl-c"># POST /accounts</span>
+<span class="pl-k">def</span> <span class="pl-en">create</span>
+  outcome <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
+
+  <span class="pl-k">if</span> outcome.valid?
+    redirect_to(outcome.result)
+  <span class="pl-k">else</span>
+    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    render(<span class="pl-c1">:new</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>The form used to create a new <code>Account</code> has slightly more information on the <code>form_for</code> call than you might expect.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-vo">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-vo">f</span>| <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s1">  &lt;%= f.text_field :first_name %<span class="pl-pds">&gt;</span></span>
+  <span class="pl-k">&lt;</span><span class="pl-k">%=</span> f.text_field <span class="pl-c1">:last_name</span> <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s1">  &lt;%= f.submit 'Create' %<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s1"><span class="pl-pds">%&gt;</span></span></pre></div>
+
+<p>This is necessary because we want the form to act like it is creating a new <code>Account</code>. Defining <code>to_model</code> on the <code>CreateAccount</code> interaction tells the form to treat our interaction like an <code>Account</code>.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  ...
+
+  <span class="pl-k">def</span> <span class="pl-en">to_model</span>
+    <span class="pl-s3">Account</span>.<span class="pl-k">new</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Now our <code>form_for</code> call knows how to generate the correct URL and param name (i.e. <code>params[:account]</code>).</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-c"># app/views/accounts/new.html.erb</span>
+<span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-vo">@account</span> <span class="pl-k">do </span>|<span class="pl-vo">f</span>| <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s1">  ...</span>
+<span class="pl-s1">&lt;% end %<span class="pl-pds">&gt;</span></span></pre></div>
+
+<p>ActiveInteraction also supports <a href="https://rubygems.org/gems/formtastic">formtastic</a> and <a href="https://rubygems.org/gems/simple_form">simple_form</a>. The filters used to define the inputs on your interaction will relay type information to these gems. As a result, form fields will automatically use the appropriate input type.</p>
+
+<h3>
+<a id="predicates" class="anchor" href="#predicates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicates</h3>
+
+<p>ActiveInteraction creates a predicate method for every input defined by a filter. So if you have an input called <code>foo</code>, there will be a predicate method called <code>#foo?</code>. That method will tell you if the input was given (that is, if it was not <code>nil</code>).</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:name</span>,
+    <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    <span class="pl-k">if</span> name?
+      <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+    <span class="pl-k">else</span>
+      <span class="pl-s1"><span class="pl-pds">"</span>Howdy, stranger!<span class="pl-pds">"</span></span>
+    <span class="pl-k">end</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
+<span class="pl-c"># =&gt; "Howdy, stranger!"</span>
+<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
+
+<h3>
+<a id="translations" class="anchor" href="#translations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Translations</h3>
+
+<p>ActiveInteraction is i18n aware out of the box! All you have to do is add
+translations to your project. In Rails, these typically go into
+<code>config/locales</code>. For example, let's say that for some reason you want to print
+everything out backwards. Simply add translations for ActiveInteraction to your
+<code>hsilgne</code> locale.</p>
+
+<div class="highlight highlight-yml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
 <span class="pl-s1"><span class="pl-ent">hsilgne:</span></span>
   <span class="pl-s1"><span class="pl-ent">active_interaction:</span></span>
     <span class="pl-s1"><span class="pl-ent">types:</span></span>
@@ -291,33 +1186,45 @@ translations for ActiveInteraction to your <code>hsilgne</code> locale:</p>
       <span class="pl-s1"><span class="pl-ent">float:</span> <span class="pl-s1">taolf</span></span>
       <span class="pl-s1"><span class="pl-ent">hash:</span> <span class="pl-s1">hsah</span></span>
       <span class="pl-s1"><span class="pl-ent">integer:</span> <span class="pl-s1">regetni</span></span>
+      <span class="pl-s1"><span class="pl-ent">interface:</span> <span class="pl-s1">ecafretni</span></span>
       <span class="pl-s1"><span class="pl-ent">model:</span> <span class="pl-s1">ledom</span></span>
       <span class="pl-s1"><span class="pl-ent">string:</span> <span class="pl-s1">gnirts</span></span>
+      <span class="pl-s1"><span class="pl-ent">symbol:</span> <span class="pl-s1">lobmys</span></span>
       <span class="pl-s1"><span class="pl-ent">time:</span> <span class="pl-s1">emit</span></span>
     <span class="pl-s1"><span class="pl-ent">errors:</span></span>
       <span class="pl-s1"><span class="pl-ent">messages:</span></span>
         <span class="pl-s1"><span class="pl-ent">invalid:</span> <span class="pl-s1">dilavni si</span></span>
+        <span class="pl-s1"><span class="pl-ent">invalid_nested:</span> <span class="pl-s1">(%{value} &lt;= %{name}) eulav detsen dilavni na sah</span></span>
         <span class="pl-s1"><span class="pl-ent">invalid_type:</span> <span class="pl-s1"><span class="pl-pds">'</span>%{type} dilav a ton si<span class="pl-pds">'</span></span></span>
         <span class="pl-s1"><span class="pl-ent">missing:</span> <span class="pl-s1">deriuqer si</span></span></pre></div>
 
-<p>Then set your locale and run an interaction like normal:</p>
+<p>Then set your locale and run interactions like normal.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">I18n</span>.locale <span class="pl-k">=</span> <span class="pl-c1">:hsilgne</span>
-<span class="pl-k">class</span> <span class="pl-en">Interaction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  boolean <span class="pl-c1">:a</span>
-  <span class="pl-k">def</span> <span class="pl-en">execute</span>; <span class="pl-k">end</span>
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">I18nInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  string <span class="pl-c1">:name</span>
 <span class="pl-k">end</span>
-p <span class="pl-s3">Interaction</span>.run.errors.messages
-<span class="pl-c"># =&gt; {:a=&gt;["deriuqer si"]}</span></pre></div>
+
+<span class="pl-s3">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
+<span class="pl-c"># =&gt; ["is not a valid string"]</span>
+
+<span class="pl-s3">I18n</span>.locale <span class="pl-k">=</span> <span class="pl-c1">:hsilgne</span>
+<span class="pl-s3">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
+<span class="pl-c"># =&gt; ["gnirts dilav a ton si"]</span></pre></div>
 
 <h2>
 <a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
 
-<p>ActiveInteraction is brought to you by <a href="https://github.com/AaronLasseigne">@AaronLasseigne</a> and
-<a href="https://github.com/tfausak">@tfausak</a> from <a href="https://github.com/orgsync">@orgsync</a>. We were inspired by the fantastic
-work done in <a href="https://github.com/cypriss/mutations">Mutations</a>.</p>
+<p>ActiveInteraction is brought to you by <a href="https://github.com/AaronLasseigne">Aaron Lasseigne</a> and
+<a href="https://github.com/tfausak">Taylor Fausak</a> from <a href="https://github.com/orgsync">OrgSync</a>. We were inspired by the fantastic work done
+by <a href="https://github.com/cypriss">Jonathan Novak</a> on <a href="https://github.com/cypriss/mutations">Mutations</a>.</p>
 
-<p>Logo provided free by <a href="http://emojione.com/">Emoji One</a>.</p>
+<p>If you want to contribute to ActiveInteraction, please read
+<a href="CONTRIBUTING.md">our contribution guidelines</a>. A <a href="https://github.com/orgsync/active_interaction/graphs/contributors">complete list of contributors</a> is
+available on GitHub.</p>
+
+<p>ActiveInteraction is licensed under <a href="LICENSE.txt">the MIT License</a>.</p>
+
+<p>Logo design by <a href="https://github.com/tylerlee">Tyler Lee</a>.</p>
       </section>
 
     </div>
