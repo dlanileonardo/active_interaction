@@ -1,44 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>ActiveInteraction by orgsync</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/orgsync/active_interaction">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/orgsync/active_interaction/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/orgsync/active_interaction/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <section class="page-header">
+      <h1 class="project-name">ActiveInteraction</h1>
+      <h2 class="project-tagline">Manage application specific business logic.</h2>
+      <a href="https://github.com/orgsync/active_interaction" class="btn">View on GitHub</a>
+      <a href="https://github.com/orgsync/active_interaction/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/orgsync/active_interaction/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>ActiveInteraction</h1>
-          <p>Manage application specific business logic.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/orgsync">orgsync</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <p align="center">
+    <section class="main-content">
+      <p align="center">
   <img alt="" src="https://a.pomf.se/auvctt.svg" width="250">
 </p>
 
@@ -156,11 +137,11 @@ handles your verbs.</p>
 
 <p>Add it to your Gemfile:</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
 
 <p>Or install it manually:</p>
 
-<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s1"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
 
 <p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
 detailed list of changes.</p>
@@ -189,7 +170,7 @@ section</a> if you need more than that.</p></li>
 <p>That covers the basics. Let's put it all together into a simple example that
 squares a number.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>
+<div class="highlight highlight-rb"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>
 
 <span class="pl-k">class</span> <span class="pl-en">Square<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   float <span class="pl-c1">:x</span>
@@ -205,13 +186,13 @@ this an outcome. You can use the <code>#valid?</code> method to ask the outcome 
 valid. If it's invalid, take a look at its errors with <code>#errors</code>. If it's
 valid, <code>#result</code> will be the value returned from <code>#execute</code>.</p>
 
-<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-s3">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 outcome.valid?
 <span class="pl-c"># =&gt; nil</span>
 outcome.errors.messages
 <span class="pl-c"># =&gt; {:x=&gt;["is not a valid float"]}</span>
 
-outcome <span class="pl-k">=</span> <span class="pl-s3">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+outcome <span class="pl-k">=</span> <span class="pl-c1">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
 outcome.valid?
 <span class="pl-c"># =&gt; true</span>
 outcome.result
@@ -222,9 +203,9 @@ dangerous. It doesn't return an outcome. If the outcome would be invalid, it
 will instead raise an error. But if the outcome would be valid, it simply
 returns the result.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-s3">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-rb"><pre><span class="pl-c1">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: X is not a valid float</span>
-<span class="pl-s3">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+<span class="pl-c1">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
 <span class="pl-c"># =&gt; 4.41</span></pre></div>
 
 <h3>
@@ -246,7 +227,7 @@ interactions.</p>
     <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s1">name</span><span class="pl-pse"><span class="pl-s1">}</span></span>!<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -254,13 +235,13 @@ interactions.</p>
 will type check your inputs. Then ActiveModel will validate them. If both of
 those are happy, it will be executed.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
+<div class="highlight highlight-rb"><pre><span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name is required</span>
 
-<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)
+<span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name can't be blank</span>
 
-<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
 <span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
 
 <h2>
@@ -292,7 +273,7 @@ example filter").</p>
 
 <div class="highlight highlight-rb"><pre>array <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>, <span class="pl-c1">:z</span>,
   <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>,
-  <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>an example filter<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+  <span class="pl-c1">desc:</span> <span class="pl-s"><span class="pl-pds">'</span>an example filter<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
     <span class="pl-c"># Some filters support sub-filters here.</span>
   <span class="pl-k">end</span></pre></div>
 
@@ -315,9 +296,9 @@ Rails, so <code>"1"</code> can be interpreted as the boolean value <code>true</c
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> <span class="pl-s1"><span class="pl-pds">'</span>everything<span class="pl-pds">'</span></span>)
+<span class="pl-c1">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> <span class="pl-s"><span class="pl-pds">'</span>everything<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Toppings is not a valid array</span>
-<span class="pl-s3">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> [<span class="pl-c1">:cheese</span>, <span class="pl-s1"><span class="pl-pds">'</span>pepperoni<span class="pl-pds">'</span></span>])
+<span class="pl-c1">ArrayInteraction</span>.run!(<span class="pl-c1">toppings:</span> [<span class="pl-c1">:cheese</span>, <span class="pl-s"><span class="pl-pds">'</span>pepperoni<span class="pl-pds">'</span></span>])
 <span class="pl-c"># =&gt; 2</span></pre></div>
 
 <p>Use a block to constrain the types of elements an array can contain.</p>
@@ -339,13 +320,13 @@ have one filter inside an array block.</p>
   boolean <span class="pl-c1">:kool_aid</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-s1"><span class="pl-pds">'</span>Oh yeah!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> kool_aid
+    <span class="pl-s"><span class="pl-pds">'</span>Oh yeah!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> kool_aid
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">1</span>)
+<span class="pl-c1">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">1</span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Kool aid is not a valid boolean</span>
-<span class="pl-s3">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">true</span>)
+<span class="pl-c1">BooleanInteraction</span>.run!(<span class="pl-c1">kool_aid:</span> <span class="pl-c1">true</span>)
 <span class="pl-c"># =&gt; "Oh yeah!"</span></pre></div>
 
 <h3>
@@ -363,9 +344,9 @@ Rails.</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-s1"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>)
+<span class="pl-c1">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-s"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Readme is not a valid file</span>
-<span class="pl-s3">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-s3">File</span>.open(<span class="pl-s1"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>))
+<span class="pl-c1">FileInteraction</span>.run!(<span class="pl-c1">readme:</span> <span class="pl-c1">File</span>.open(<span class="pl-s"><span class="pl-pds">'</span>README.md<span class="pl-pds">'</span></span>))
 <span class="pl-c"># =&gt; 21563</span></pre></div>
 
 <h3>
@@ -382,14 +363,14 @@ hash, including other hashes.</p>
   <span class="pl-k">end</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    puts <span class="pl-s1"><span class="pl-pds">'</span>Thanks for joining the newsletter!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:newsletter</span>]
-    puts <span class="pl-s1"><span class="pl-pds">'</span>Good luck in the sweepstakes!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:sweepstakes</span>]
+    puts <span class="pl-s"><span class="pl-pds">'</span>Thanks for joining the newsletter!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:newsletter</span>]
+    puts <span class="pl-s"><span class="pl-pds">'</span>Good luck in the sweepstakes!<span class="pl-pds">'</span></span> <span class="pl-k">if</span> preferences[<span class="pl-c1">:sweepstakes</span>]
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> <span class="pl-s1"><span class="pl-pds">'</span>yes, no<span class="pl-pds">'</span></span>)
+<span class="pl-c1">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> <span class="pl-s"><span class="pl-pds">'</span>yes, no<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Preferences is not a valid hash</span>
-<span class="pl-s3">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> { <span class="pl-c1">newsletter:</span> <span class="pl-c1">true</span>, <span class="pl-s1"><span class="pl-pds">'</span>sweepstakes<span class="pl-pds">'</span></span> =&gt; <span class="pl-c1">false</span> })
+<span class="pl-c1">HashInteraction</span>.run!(<span class="pl-c1">preferences:</span> { <span class="pl-c1">newsletter:</span> <span class="pl-c1">true</span>, <span class="pl-s"><span class="pl-pds">'</span>sweepstakes<span class="pl-pds">'</span></span> =&gt; <span class="pl-c1">false</span> })
 <span class="pl-c"># Thanks for joining the newsletter!</span>
 <span class="pl-c"># =&gt; nil</span></pre></div>
 
@@ -426,7 +407,7 @@ set of methods. This allows you to do duck typing with interactions.</p>
     <span class="pl-c1">methods:</span> <span class="pl-k">%</span>i[dump load]
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    input <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>{ "is_json" : true }<span class="pl-pds">'</span></span>
+    input <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{ "is_json" : true }<span class="pl-pds">'</span></span>
     object <span class="pl-k">=</span> serializer.load(input)
     output <span class="pl-k">=</span> serializer.dump(object)
 
@@ -434,11 +415,11 @@ set of methods. This allows you to do duck typing with interactions.</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>json<span class="pl-pds">'</span></span>
+<span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>json<span class="pl-pds">'</span></span>
 
-<span class="pl-s3">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-s3">Object</span>.<span class="pl-k">new</span>)
+<span class="pl-c1">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-c1">Object</span>.<span class="pl-k">new</span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Serializer is not a valid interface</span>
-<span class="pl-s3">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-vo">JSON</span>)
+<span class="pl-c1">InterfaceInteraction</span>.run!(<span class="pl-c1">serializer:</span> <span class="pl-c1">JSON</span>)
 <span class="pl-c"># =&gt; "{\"is_json\":true}"</span></pre></div>
 
 <h3>
@@ -450,7 +431,7 @@ also works with classes that have mixed modules in with <code>include</code>.</p
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Cow</span>
   <span class="pl-k">def</span> <span class="pl-en">moo</span>
-    <span class="pl-s1"><span class="pl-pds">'</span>Moo!<span class="pl-pds">'</span></span>
+    <span class="pl-s"><span class="pl-pds">'</span>Moo!<span class="pl-pds">'</span></span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
@@ -462,9 +443,9 @@ also works with classes that have mixed modules in with <code>include</code>.</p
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-s3">Object</span>.<span class="pl-k">new</span>)
+<span class="pl-c1">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Object</span>.<span class="pl-k">new</span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Cow is not a valid model</span>
-<span class="pl-s3">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-s3">Cow</span>.<span class="pl-k">new</span>)
+<span class="pl-c1">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Cow</span>.<span class="pl-k">new</span>)
 <span class="pl-c"># =&gt; "Moo!"</span></pre></div>
 
 <p>The class name is automatically determined by the filter name. If your filter
@@ -472,9 +453,9 @@ name is different than your class name, use the <code>class</code> option. It ca
 either the class, a string, or a symbol.</p>
 
 <div class="highlight highlight-rb"><pre>model <span class="pl-c1">:dolly1</span>,
-  <span class="pl-c1">class:</span> <span class="pl-vo">Sheep</span>
+  <span class="pl-c1">class:</span> <span class="pl-c1">Sheep</span>
 model <span class="pl-c1">:dolly2</span>,
-  <span class="pl-c1">class:</span> <span class="pl-s1"><span class="pl-pds">'</span>Sheep<span class="pl-pds">'</span></span>
+  <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">'</span>Sheep<span class="pl-pds">'</span></span>
 model <span class="pl-c1">:dolly3</span>,
   <span class="pl-c1">class:</span> <span class="pl-c1">:Sheep</span></pre></div>
 
@@ -487,13 +468,13 @@ model <span class="pl-c1">:dolly3</span>,
   string <span class="pl-c1">:name</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s1">name</span><span class="pl-pse"><span class="pl-s1">}</span></span>!<span class="pl-pds">"</span></span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">StringInteraction</span>.run!(<span class="pl-c1">name:</span> 0xDEADBEEF)
+<span class="pl-c1">StringInteraction</span>.run!(<span class="pl-c1">name:</span> 0xDEADBEEF)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name is not a valid string</span>
-<span class="pl-s3">StringInteraction</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c1">StringInteraction</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
 <span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
 
 <p>If you want to strip leading and trailing whitespace from a string, set the
@@ -516,9 +497,9 @@ into symbols.</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-k">-</span><span class="pl-k">&gt;</span> {})
+<span class="pl-c1">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-k">-</span><span class="pl-k">&gt;</span> {})
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Method is not a valid symbol</span>
-<span class="pl-s3">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-c1">:object_id</span>)
+<span class="pl-c1">SymbolInteraction</span>.run!(<span class="pl-c1">method:</span> <span class="pl-c1">:object_id</span>)
 <span class="pl-c"># =&gt; #&lt;Proc:0x007fdc9ba94118&gt;</span></pre></div>
 
 <h3>
@@ -540,13 +521,13 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-s1"><span class="pl-pds">'</span>yesterday<span class="pl-pds">'</span></span>)
+<span class="pl-c1">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-s"><span class="pl-pds">'</span>yesterday<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Birthday is not a valid date</span>
-<span class="pl-s3">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-s3">Date</span>.<span class="pl-k">new</span>(<span class="pl-c1">1989</span>, <span class="pl-c1">9</span>, <span class="pl-c1">1</span>))
+<span class="pl-c1">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-c1">Date</span>.<span class="pl-k">new</span>(<span class="pl-c1">1989</span>, <span class="pl-c1">9</span>, <span class="pl-c1">1</span>))
 <span class="pl-c"># =&gt; #&lt;Date: 2007-08-28 ((2454341j,0s,0n),+0s,2299161j)&gt;</span></pre></div>
 
 <div class="highlight highlight-rb"><pre>date <span class="pl-c1">:birthday</span>,
-  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%d<span class="pl-pds">'</span></span></pre></div>
+  <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%d<span class="pl-pds">'</span></span></pre></div>
 
 <h4>
 <a id="datetime" class="anchor" href="#datetime" aria-hidden="true"><span class="octicon octicon-link"></span></a>DateTime</h4>
@@ -559,13 +540,13 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-s1"><span class="pl-pds">'</span>now<span class="pl-pds">'</span></span>)
+<span class="pl-c1">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-s"><span class="pl-pds">'</span>now<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Now is not a valid date time</span>
-<span class="pl-s3">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-s3">DateTime</span>.now)
+<span class="pl-c1">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-c1">DateTime</span>.now)
 <span class="pl-c"># =&gt; "2015-03-11T11:04:40-05:00"</span></pre></div>
 
 <div class="highlight highlight-rb"><pre>date_time <span class="pl-c1">:start</span>,
-  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
+  <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
 
 <h4>
 <a id="time" class="anchor" href="#time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time</h4>
@@ -577,17 +558,17 @@ convert numbers with <code>.at</code>.</p>
   time <span class="pl-c1">:epoch</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-s3">Time</span>.now <span class="pl-k">-</span> epoch
+    <span class="pl-c1">Time</span>.now <span class="pl-k">-</span> epoch
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-s1"><span class="pl-pds">'</span>a long, long time ago<span class="pl-pds">'</span></span>)
+<span class="pl-c1">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-s"><span class="pl-pds">'</span>a long, long time ago<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Epoch is not a valid time</span>
-<span class="pl-s3">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-s3">Time</span>.<span class="pl-k">new</span>(<span class="pl-c1">1970</span>))
+<span class="pl-c1">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-c1">Time</span>.<span class="pl-k">new</span>(<span class="pl-c1">1970</span>))
 <span class="pl-c"># =&gt; 1426068362.5136619</span></pre></div>
 
 <div class="highlight highlight-rb"><pre>time <span class="pl-c1">:start</span>,
-  <span class="pl-c1">format:</span> <span class="pl-s1"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
+  <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
 
 <h3>
 <a id="numbers" class="anchor" href="#numbers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Numbers</h3>
@@ -606,9 +587,9 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-s1"><span class="pl-pds">'</span>one ninety-nine<span class="pl-pds">'</span></span>)
+<span class="pl-c1">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-s"><span class="pl-pds">'</span>one ninety-nine<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Price is not a valid decimal</span>
-<span class="pl-s3">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-s3">BigDecimal</span>.<span class="pl-k">new</span>(<span class="pl-c1">1.99</span>, <span class="pl-c1">2</span>))
+<span class="pl-c1">DecimalInteraction</span>.run!(<span class="pl-c1">price:</span> <span class="pl-c1">BigDecimal</span>.<span class="pl-k">new</span>(<span class="pl-c1">1.99</span>, <span class="pl-c1">2</span>))
 <span class="pl-c"># =&gt; #&lt;BigDecimal:7fe792a42028,'0.2165E1',18(45)&gt;</span></pre></div>
 
 <p>To specify the number of significant digits, use the <code>digits</code> option.</p>
@@ -627,9 +608,9 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s1"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<span class="pl-c1">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: X is not a valid float</span>
-<span class="pl-s3">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
+<span class="pl-c1">FloatInteraction</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
 <span class="pl-c"># =&gt; 4.41</span></pre></div>
 
 <h4>
@@ -643,9 +624,9 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-s1"><span class="pl-pds">'</span>ten<span class="pl-pds">'</span></span>)
+<span class="pl-c1">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-s"><span class="pl-pds">'</span>ten<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Limit is not a valid integer</span>
-<span class="pl-s3">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-c1">10</span>)
+<span class="pl-c1">IntegerInteraction</span>.run!(<span class="pl-c1">limit:</span> <span class="pl-c1">10</span>)
 <span class="pl-c"># =&gt; [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</span></pre></div>
 
 <h2>
@@ -664,7 +645,7 @@ resourceful actions.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts</span>
 <span class="pl-k">def</span> <span class="pl-en">index</span>
-  <span class="pl-vo">@accounts</span> <span class="pl-k">=</span> <span class="pl-s3">ListAccounts</span>.run!
+  <span class="pl-smi">@accounts</span> <span class="pl-k">=</span> <span class="pl-c1">ListAccounts</span>.run!
 <span class="pl-k">end</span></pre></div>
 
 <p>Since we're not passing any inputs to <code>ListAccounts</code>, it makes sense to use
@@ -673,7 +654,7 @@ writing the interaction.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">ListAccounts<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-s3">Account</span>.not_deleted.order(<span class="pl-c1">last_name:</span> <span class="pl-c1">:asc</span>, <span class="pl-c1">first_name:</span> <span class="pl-c1">:asc</span>)
+    <span class="pl-c1">Account</span>.not_deleted.order(<span class="pl-c1">last_name:</span> <span class="pl-c1">:asc</span>, <span class="pl-c1">first_name:</span> <span class="pl-c1">:asc</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -688,18 +669,18 @@ a 404.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">show</span>
-  <span class="pl-vo">@account</span> <span class="pl-k">=</span> find_account!
+  <span class="pl-smi">@account</span> <span class="pl-k">=</span> find_account!
 <span class="pl-k">end</span>
 
 <span class="pl-k">private</span>
 
 <span class="pl-k">def</span> <span class="pl-en">find_account!</span>
-  outcome <span class="pl-k">=</span> <span class="pl-s3">FindAccount</span>.run(params)
+  outcome <span class="pl-k">=</span> <span class="pl-c1">FindAccount</span>.run(params)
 
   <span class="pl-k">if</span> outcome.valid?
     outcome.result
   <span class="pl-k">else</span>
-    fail <span class="pl-s3">ActiveRecord</span>::<span class="pl-vo">RecordNotFound</span>, outcome.errors.full_messages.to_sentence
+    fail <span class="pl-c1">ActiveRecord</span>::<span class="pl-c1">RecordNotFound</span>, outcome.errors.full_messages.to_sentence
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -720,12 +701,12 @@ as well as the validity of the outcome.</p>
   integer <span class="pl-c1">:id</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    account <span class="pl-k">=</span> <span class="pl-s3">Account</span>.not_deleted.find_by_id(id)
+    account <span class="pl-k">=</span> <span class="pl-c1">Account</span>.not_deleted.find_by_id(id)
 
     <span class="pl-k">if</span> account
       account
     <span class="pl-k">else</span>
-      errors.add(<span class="pl-c1">:id</span>, <span class="pl-s1"><span class="pl-pds">'</span>does not exist<span class="pl-pds">'</span></span>)
+      errors.add(<span class="pl-c1">:id</span>, <span class="pl-s"><span class="pl-pds">'</span>does not exist<span class="pl-pds">'</span></span>)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -742,7 +723,7 @@ interaction. This is possible because interactions behave like ActiveModels.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
 <span class="pl-k">def</span> <span class="pl-en">new</span>
-  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.<span class="pl-k">new</span>
+  <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.<span class="pl-k">new</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>Since interactions behave like ActiveModels, we can use ActiveModel validations
@@ -757,16 +738,16 @@ detail about this.</p>
     <span class="pl-c1">presence:</span> <span class="pl-c1">true</span>
 
   <span class="pl-k">def</span> <span class="pl-en">to_model</span>
-    <span class="pl-s3">Account</span>.<span class="pl-k">new</span>
+    <span class="pl-c1">Account</span>.<span class="pl-k">new</span>
   <span class="pl-k">end</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    account <span class="pl-k">=</span> <span class="pl-s3">Account</span>.<span class="pl-k">new</span>(inputs)
+    account <span class="pl-k">=</span> <span class="pl-c1">Account</span>.<span class="pl-k">new</span>(inputs)
 
     <span class="pl-k">if</span> account.save
       account
     <span class="pl-k">else</span>
-      errors.merge(account.errors)
+      errors.merge!(account.errors)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -786,12 +767,12 @@ falls back to rendering the new action.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># POST /accounts</span>
 <span class="pl-k">def</span> <span class="pl-en">create</span>
-  outcome <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
+  outcome <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
 
   <span class="pl-k">if</span> outcome.valid?
     redirect_to(outcome.result)
   <span class="pl-k">else</span>
-    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    <span class="pl-smi">@account</span> <span class="pl-k">=</span> outcome
     render(<span class="pl-c1">:new</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -811,7 +792,7 @@ earlier.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># DELETE /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">destroy</span>
-  <span class="pl-s3">DestroyAccount</span>.run!(<span class="pl-c1">account:</span> find_account!)
+  <span class="pl-c1">DestroyAccount</span>.run!(<span class="pl-c1">account:</span> find_account!)
   redirect_to(accounts_url)
 <span class="pl-k">end</span></pre></div>
 
@@ -837,7 +818,7 @@ creates a new interaction instance to use as a form object.</p>
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id/edit</span>
 <span class="pl-k">def</span> <span class="pl-en">edit</span>
   account <span class="pl-k">=</span> find_account!
-  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">UpdateAccount</span>.<span class="pl-k">new</span>(
+  <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">UpdateAccount</span>.<span class="pl-k">new</span>(
     <span class="pl-c1">account:</span> account,
     <span class="pl-c1">first_name:</span> account.first_name,
     <span class="pl-c1">last_name:</span> account.last_name)
@@ -871,7 +852,7 @@ Skip to <a href="#predicates">the predicates section</a> for more information ab
     <span class="pl-k">if</span> account.save
       account
     <span class="pl-k">else</span>
-      errors.merge(account.errors)
+      errors.merge!(account.errors)
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -887,12 +868,12 @@ edit page.</p>
 <div class="highlight highlight-rb"><pre><span class="pl-c"># PUT /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">update</span>
   inputs <span class="pl-k">=</span> { <span class="pl-c1">account:</span> find_account! }.reverse_merge(params[<span class="pl-c1">:account</span>])
-  outcome <span class="pl-k">=</span> <span class="pl-s3">UpdateAccount</span>.run(inputs)
+  outcome <span class="pl-k">=</span> <span class="pl-c1">UpdateAccount</span>.run(inputs)
 
   <span class="pl-k">if</span> outcome.valid?
     redirect_to(outcome.result)
   <span class="pl-k">else</span>
-    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    <span class="pl-smi">@account</span> <span class="pl-k">=</span> outcome
     render(<span class="pl-c1">:edit</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -935,28 +916,28 @@ ActiveInteraction hooks into that framework to allow hooking into various parts
 of an interaction's lifecycle.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Increment<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  set_callback <span class="pl-c1">:type_check</span>, <span class="pl-c1">:before</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s1"><span class="pl-pds">'</span>before type check<span class="pl-pds">'</span></span> }
+  set_callback <span class="pl-c1">:type_check</span>, <span class="pl-c1">:before</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s"><span class="pl-pds">'</span>before type check<span class="pl-pds">'</span></span> }
 
   integer <span class="pl-c1">:x</span>
 
-  set_callback <span class="pl-c1">:validate</span>, <span class="pl-c1">:after</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s1"><span class="pl-pds">'</span>after validate<span class="pl-pds">'</span></span> }
+  set_callback <span class="pl-c1">:validate</span>, <span class="pl-c1">:after</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s"><span class="pl-pds">'</span>after validate<span class="pl-pds">'</span></span> }
 
   validates <span class="pl-c1">:x</span>,
     <span class="pl-c1">numericality:</span> { <span class="pl-c1">greater_than_or_equal_to:</span> <span class="pl-c1">0</span> }
 
-  set_callback <span class="pl-c1">:execute</span>, <span class="pl-c1">:around</span>, lambda { |<span class="pl-vo">_interaction</span>, <span class="pl-vo">block</span>|
-    puts <span class="pl-s1"><span class="pl-pds">'</span>&gt;&gt;&gt;<span class="pl-pds">'</span></span>
+  set_callback <span class="pl-c1">:execute</span>, <span class="pl-c1">:around</span>, lambda { |<span class="pl-smi">_interaction</span>, <span class="pl-smi">block</span>|
+    puts <span class="pl-s"><span class="pl-pds">'</span>&gt;&gt;&gt;<span class="pl-pds">'</span></span>
     block.call
-    puts <span class="pl-s1"><span class="pl-pds">'</span>&lt;&lt;&lt;<span class="pl-pds">'</span></span>
+    puts <span class="pl-s"><span class="pl-pds">'</span>&lt;&lt;&lt;<span class="pl-pds">'</span></span>
   }
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    puts <span class="pl-s1"><span class="pl-pds">'</span>executing<span class="pl-pds">'</span></span>
+    puts <span class="pl-s"><span class="pl-pds">'</span>executing<span class="pl-pds">'</span></span>
     x <span class="pl-k">+</span> <span class="pl-c1">1</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">Increment</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">1</span>)
+<span class="pl-c1">Increment</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">1</span>)
 <span class="pl-c"># before type check</span>
 <span class="pl-c"># after validate</span>
 <span class="pl-c"># &gt;&gt;&gt;</span>
@@ -987,21 +968,21 @@ the errors will be moved onto the caller.</p>
   integer <span class="pl-c1">:x</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    compose(<span class="pl-vo">Add</span>, <span class="pl-c1">x:</span> x, <span class="pl-c1">y:</span> <span class="pl-c1">3</span>)
+    compose(<span class="pl-c1">Add</span>, <span class="pl-c1">x:</span> x, <span class="pl-c1">y:</span> <span class="pl-c1">3</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">AddThree</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">5</span>)
+<span class="pl-c1">AddThree</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">5</span>)
 <span class="pl-c"># =&gt; 8</span></pre></div>
 
 <p>To bring in filters from another interaction, use <code>.import_filters</code>. Combined
 with <code>inputs</code>, delegating to another interaction is a piece of cake.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">AddAndDouble<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  import_filters <span class="pl-vo">Add</span>
+  import_filters <span class="pl-c1">Add</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    compose(<span class="pl-vo">Add</span>, inputs) <span class="pl-k">*</span> <span class="pl-c1">2</span>
+    compose(<span class="pl-c1">Add</span>, inputs) <span class="pl-k">*</span> <span class="pl-c1">2</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -1015,13 +996,13 @@ hash of filters. Each filter has a <code>#desc</code> method that returns the de
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Descriptive<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:first_name</span>,
-    <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>your first name<span class="pl-pds">'</span></span>
+    <span class="pl-c1">desc:</span> <span class="pl-s"><span class="pl-pds">'</span>your first name<span class="pl-pds">'</span></span>
   string <span class="pl-c1">:last_name</span>,
-    <span class="pl-c1">desc:</span> <span class="pl-s1"><span class="pl-pds">'</span>your last name<span class="pl-pds">'</span></span>
+    <span class="pl-c1">desc:</span> <span class="pl-s"><span class="pl-pds">'</span>your last name<span class="pl-pds">'</span></span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">Descriptive</span>.filters.each <span class="pl-k">do </span>|<span class="pl-vo">name</span>, <span class="pl-vo">filter</span>|
-  puts <span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>: <span class="pl-pse">#{</span><span class="pl-s2">filter.desc</span><span class="pl-pse"><span class="pl-s2">}</span></span><span class="pl-pds">"</span></span>
+<span class="pl-c1">Descriptive</span>.filters.each <span class="pl-k">do </span>|<span class="pl-smi">name</span>, <span class="pl-smi">filter</span>|
+  puts <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">#{</span><span class="pl-s1">name</span><span class="pl-pse"><span class="pl-s1">}</span></span>: <span class="pl-pse">#{</span><span class="pl-s1">filter.desc</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
 <span class="pl-k">end</span>
 <span class="pl-c"># first_name: your first name</span>
 <span class="pl-c"># last_name: your last name</span></pre></div>
@@ -1046,7 +1027,7 @@ an item is purchased using a credit card.</p>
     order
   <span class="pl-k">end</span>
 
-  <span class="pl-k">private</span> <span class="pl-k">def</span> <span class="pl-en">notify</span>(<span class="pl-vpf">account</span>)
+  <span class="pl-k">private</span> <span class="pl-k">def</span> <span class="pl-en">notify</span>(<span class="pl-smi">account</span>)
     <span class="pl-c"># ...</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
@@ -1054,7 +1035,7 @@ an item is purchased using a credit card.</p>
 <p>Having missing or invalid inputs causes the interaction to fail and return
 errors.</p>
 
-<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-s3">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s1"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s1"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
+<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
 outcome.errors.messages
 <span class="pl-c"># =&gt; {:credit_card=&gt;["is required"], :item=&gt;["is not a valid model"], :options=&gt;["has an invalid nested value (\"gift_wrapped\" =&gt; \"yes\")"]}</span></pre></div>
 
@@ -1070,7 +1051,7 @@ the same list of errors with a testable label representing the error.</p>
 that the second argument is the error label.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
-  errors.add_sym(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>, <span class="pl-s1"><span class="pl-pds">'</span>You shall not pass!<span class="pl-pds">'</span></span>)
+  errors.add_sym(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>, <span class="pl-s"><span class="pl-pds">'</span>You shall not pass!<span class="pl-pds">'</span></span>)
 <span class="pl-k">end</span></pre></div>
 
 <p>ActiveInteraction also supports merging errors. This is useful if you want to
@@ -1099,28 +1080,28 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
 <span class="pl-k">def</span> <span class="pl-en">new</span>
-  <span class="pl-vo">@account</span> <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.<span class="pl-k">new</span>
+  <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.<span class="pl-k">new</span>
 <span class="pl-k">end</span>
 
 <span class="pl-c"># POST /accounts</span>
 <span class="pl-k">def</span> <span class="pl-en">create</span>
-  outcome <span class="pl-k">=</span> <span class="pl-s3">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
+  outcome <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
 
   <span class="pl-k">if</span> outcome.valid?
     redirect_to(outcome.result)
   <span class="pl-k">else</span>
-    <span class="pl-vo">@account</span> <span class="pl-k">=</span> outcome
+    <span class="pl-smi">@account</span> <span class="pl-k">=</span> outcome
     render(<span class="pl-c1">:new</span>)
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>The form used to create a new <code>Account</code> has slightly more information on the <code>form_for</code> call than you might expect.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-vo">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-vo">f</span>| <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s1">  &lt;%= f.text_field :first_name %<span class="pl-pds">&gt;</span></span>
-  <span class="pl-k">&lt;</span><span class="pl-k">%=</span> f.text_field <span class="pl-c1">:last_name</span> <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s1">  &lt;%= f.submit 'Create' %<span class="pl-pds">&gt;</span></span>
-<span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s1"><span class="pl-pds">%&gt;</span></span></pre></div>
+<div class="highlight highlight-rb"><pre><span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-smi">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-smi">f</span>| <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">  &lt;%= f.text_field :first_name %<span class="pl-pds">&gt;</span></span>
+  <span class="pl-k">&lt;</span><span class="pl-k">%=</span> f.text_field <span class="pl-c1">:last_name</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">  &lt;%= f.submit 'Create' %<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span></pre></div>
 
 <p>This is necessary because we want the form to act like it is creating a new <code>Account</code>. Defining <code>to_model</code> on the <code>CreateAccount</code> interaction tells the form to treat our interaction like an <code>Account</code>.</p>
 
@@ -1128,16 +1109,16 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
   ...
 
   <span class="pl-k">def</span> <span class="pl-en">to_model</span>
-    <span class="pl-s3">Account</span>.<span class="pl-k">new</span>
+    <span class="pl-c1">Account</span>.<span class="pl-k">new</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>Now our <code>form_for</code> call knows how to generate the correct URL and param name (i.e. <code>params[:account]</code>).</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># app/views/accounts/new.html.erb</span>
-<span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-vo">@account</span> <span class="pl-k">do </span>|<span class="pl-vo">f</span>| <span class="pl-s1"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s1">  ...</span>
-<span class="pl-s1">&lt;% end %<span class="pl-pds">&gt;</span></span></pre></div>
+<span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-smi">@account</span> <span class="pl-k">do </span>|<span class="pl-smi">f</span>| <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">  ...</span>
+<span class="pl-s">&lt;% end %<span class="pl-pds">&gt;</span></span></pre></div>
 
 <p>ActiveInteraction also supports <a href="https://rubygems.org/gems/formtastic">formtastic</a> and <a href="https://rubygems.org/gems/simple_form">simple_form</a>. The filters used to define the inputs on your interaction will relay type information to these gems. As a result, form fields will automatically use the appropriate input type.</p>
 
@@ -1152,16 +1133,16 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     <span class="pl-k">if</span> name?
-      <span class="pl-s1"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s2">name</span><span class="pl-pse"><span class="pl-s2">}</span></span>!<span class="pl-pds">"</span></span>
+      <span class="pl-s"><span class="pl-pds">"</span>Hello, <span class="pl-pse">#{</span><span class="pl-s1">name</span><span class="pl-pse"><span class="pl-s1">}</span></span>!<span class="pl-pds">"</span></span>
     <span class="pl-k">else</span>
-      <span class="pl-s1"><span class="pl-pds">"</span>Howdy, stranger!<span class="pl-pds">"</span></span>
+      <span class="pl-s"><span class="pl-pds">"</span>Howdy, stranger!<span class="pl-pds">"</span></span>
     <span class="pl-k">end</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
+<span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
 <span class="pl-c"># =&gt; "Howdy, stranger!"</span>
-<span class="pl-s3">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s1"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
+<span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s"><span class="pl-pds">'</span>Taylor<span class="pl-pds">'</span></span>)
 <span class="pl-c"># =&gt; "Hello, Taylor!"</span></pre></div>
 
 <h3>
@@ -1174,29 +1155,29 @@ everything out backwards. Simply add translations for ActiveInteraction to your
 <code>hsilgne</code> locale.</p>
 
 <div class="highlight highlight-yml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
-<span class="pl-s1"><span class="pl-ent">hsilgne:</span></span>
-  <span class="pl-s1"><span class="pl-ent">active_interaction:</span></span>
-    <span class="pl-s1"><span class="pl-ent">types:</span></span>
-      <span class="pl-s1"><span class="pl-ent">array:</span> <span class="pl-s1">yarra</span></span>
-      <span class="pl-s1"><span class="pl-ent">boolean:</span> <span class="pl-s1">naeloob</span></span>
-      <span class="pl-s1"><span class="pl-ent">date:</span> <span class="pl-s1">etad</span></span>
-      <span class="pl-s1"><span class="pl-ent">date_time:</span> <span class="pl-s1">emit etad</span></span>
-      <span class="pl-s1"><span class="pl-ent">decimal:</span> <span class="pl-s1">lamiced</span></span>
-      <span class="pl-s1"><span class="pl-ent">file:</span> <span class="pl-s1">elif</span></span>
-      <span class="pl-s1"><span class="pl-ent">float:</span> <span class="pl-s1">taolf</span></span>
-      <span class="pl-s1"><span class="pl-ent">hash:</span> <span class="pl-s1">hsah</span></span>
-      <span class="pl-s1"><span class="pl-ent">integer:</span> <span class="pl-s1">regetni</span></span>
-      <span class="pl-s1"><span class="pl-ent">interface:</span> <span class="pl-s1">ecafretni</span></span>
-      <span class="pl-s1"><span class="pl-ent">model:</span> <span class="pl-s1">ledom</span></span>
-      <span class="pl-s1"><span class="pl-ent">string:</span> <span class="pl-s1">gnirts</span></span>
-      <span class="pl-s1"><span class="pl-ent">symbol:</span> <span class="pl-s1">lobmys</span></span>
-      <span class="pl-s1"><span class="pl-ent">time:</span> <span class="pl-s1">emit</span></span>
-    <span class="pl-s1"><span class="pl-ent">errors:</span></span>
-      <span class="pl-s1"><span class="pl-ent">messages:</span></span>
-        <span class="pl-s1"><span class="pl-ent">invalid:</span> <span class="pl-s1">dilavni si</span></span>
-        <span class="pl-s1"><span class="pl-ent">invalid_nested:</span> <span class="pl-s1">(%{value} &lt;= %{name}) eulav detsen dilavni na sah</span></span>
-        <span class="pl-s1"><span class="pl-ent">invalid_type:</span> <span class="pl-s1"><span class="pl-pds">'</span>%{type} dilav a ton si<span class="pl-pds">'</span></span></span>
-        <span class="pl-s1"><span class="pl-ent">missing:</span> <span class="pl-s1">deriuqer si</span></span></pre></div>
+<span class="pl-s"><span class="pl-ent">hsilgne:</span></span>
+  <span class="pl-s"><span class="pl-ent">active_interaction:</span></span>
+    <span class="pl-s"><span class="pl-ent">types:</span></span>
+      <span class="pl-s"><span class="pl-ent">array:</span> <span class="pl-s">yarra</span></span>
+      <span class="pl-s"><span class="pl-ent">boolean:</span> <span class="pl-s">naeloob</span></span>
+      <span class="pl-s"><span class="pl-ent">date:</span> <span class="pl-s">etad</span></span>
+      <span class="pl-s"><span class="pl-ent">date_time:</span> <span class="pl-s">emit etad</span></span>
+      <span class="pl-s"><span class="pl-ent">decimal:</span> <span class="pl-s">lamiced</span></span>
+      <span class="pl-s"><span class="pl-ent">file:</span> <span class="pl-s">elif</span></span>
+      <span class="pl-s"><span class="pl-ent">float:</span> <span class="pl-s">taolf</span></span>
+      <span class="pl-s"><span class="pl-ent">hash:</span> <span class="pl-s">hsah</span></span>
+      <span class="pl-s"><span class="pl-ent">integer:</span> <span class="pl-s">regetni</span></span>
+      <span class="pl-s"><span class="pl-ent">interface:</span> <span class="pl-s">ecafretni</span></span>
+      <span class="pl-s"><span class="pl-ent">model:</span> <span class="pl-s">ledom</span></span>
+      <span class="pl-s"><span class="pl-ent">string:</span> <span class="pl-s">gnirts</span></span>
+      <span class="pl-s"><span class="pl-ent">symbol:</span> <span class="pl-s">lobmys</span></span>
+      <span class="pl-s"><span class="pl-ent">time:</span> <span class="pl-s">emit</span></span>
+    <span class="pl-s"><span class="pl-ent">errors:</span></span>
+      <span class="pl-s"><span class="pl-ent">messages:</span></span>
+        <span class="pl-s"><span class="pl-ent">invalid:</span> <span class="pl-s">dilavni si</span></span>
+        <span class="pl-s"><span class="pl-ent">invalid_nested:</span> <span class="pl-s">(%{value} &lt;= %{name}) eulav detsen dilavni na sah</span></span>
+        <span class="pl-s"><span class="pl-ent">invalid_type:</span> <span class="pl-s"><span class="pl-pds">'</span>%{type} dilav a ton si<span class="pl-pds">'</span></span></span>
+        <span class="pl-s"><span class="pl-ent">missing:</span> <span class="pl-s">deriuqer si</span></span></pre></div>
 
 <p>Then set your locale and run interactions like normal.</p>
 
@@ -1204,11 +1185,11 @@ everything out backwards. Simply add translations for ActiveInteraction to your
   string <span class="pl-c1">:name</span>
 <span class="pl-k">end</span>
 
-<span class="pl-s3">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
+<span class="pl-c1">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
 <span class="pl-c"># =&gt; ["is not a valid string"]</span>
 
-<span class="pl-s3">I18n</span>.locale <span class="pl-k">=</span> <span class="pl-c1">:hsilgne</span>
-<span class="pl-s3">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
+<span class="pl-c1">I18n</span>.locale <span class="pl-k">=</span> <span class="pl-c1">:hsilgne</span>
+<span class="pl-c1">I18nInteraction</span>.run(<span class="pl-c1">name:</span> <span class="pl-c1">false</span>).errors.messages[<span class="pl-c1">:name</span>]
 <span class="pl-c"># =&gt; ["gnirts dilav a ton si"]</span></pre></div>
 
 <h2>
@@ -1225,10 +1206,16 @@ available on GitHub.</p>
 <p>ActiveInteraction is licensed under <a href="LICENSE.txt">the MIT License</a>.</p>
 
 <p>Logo design by <a href="https://github.com/tylerlee">Tyler Lee</a>.</p>
-      </section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/orgsync/active_interaction">ActiveInteraction</a> is maintained by <a href="https://github.com/orgsync">orgsync</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
+
