@@ -24,26 +24,11 @@
 </p>
 
 <p align="center">
-  ActiveInteraction manages application-specific business logic.
-  It's an implementation of the command pattern in Ruby.
-</p>
-
-<p align="center">
-  <a href="https://rubygems.org/gems/active_interaction">
-    <img alt="" src="https://img.shields.io/gem/v/active_interaction.svg">
-  </a>
-  <a href="https://travis-ci.org/orgsync/active_interaction">
-    <img alt="" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg">
-  </a>
-  <a href="https://coveralls.io/r/orgsync/active_interaction">
-    <img alt="" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg">
-  </a>
-  <a href="https://codeclimate.com/github/orgsync/active_interaction">
-    <img alt="" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg">
-  </a>
-  <a href="https://gemnasium.com/orgsync/active_interaction">
-    <img alt="" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg">
-  </a>
+  <a href="https://rubygems.org/gems/active_interaction"><img alt="" src="https://img.shields.io/gem/v/active_interaction.svg?label=version&amp;style=flat-square"></a>
+  <a href="https://travis-ci.org/orgsync/active_interaction"><img alt="" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?label=build&amp;style=flat-square"></a>
+  <a href="https://coveralls.io/r/orgsync/active_interaction"><img alt="" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?label=coverage&amp;style=flat-square"></a>
+  <a href="https://codeclimate.com/github/orgsync/active_interaction"><img alt="" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?label=climate&amp;style=flat-square"></a>
+  <a href="https://gemnasium.com/orgsync/active_interaction"><img alt="" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?label=dependencies&amp;style=flat-square"></a>
 </p>
 
 <hr>
@@ -744,11 +729,11 @@ detail about this.</p>
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     account <span class="pl-k">=</span> <span class="pl-c1">Account</span>.<span class="pl-k">new</span>(inputs)
 
-    <span class="pl-k">if</span> account.save
-      account
-    <span class="pl-k">else</span>
+    <span class="pl-k">unless</span> account.save
       errors.merge!(account.errors)
     <span class="pl-k">end</span>
+
+    account
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -849,11 +834,11 @@ Skip to <a href="#predicates">the predicates section</a> for more information ab
     account.first_name <span class="pl-k">=</span> first_name <span class="pl-k">if</span> first_name?
     account.last_name <span class="pl-k">=</span> last_name <span class="pl-k">if</span> last_name?
 
-    <span class="pl-k">if</span> account.save
-      account
-    <span class="pl-k">else</span>
+    <span class="pl-k">unless</span> account.save
       errors.merge!(account.errors)
     <span class="pl-k">end</span>
+
+    account
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -1063,11 +1048,11 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
   model <span class="pl-c1">:thing</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
-    <span class="pl-k">if</span> thing.save
-      thing
-    <span class="pl-k">else</span>
+    <span class="pl-k">unless</span> thing.save
       errors.merge!(thing.errors)
     <span class="pl-k">end</span>
+
+    thing
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
