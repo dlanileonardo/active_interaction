@@ -63,7 +63,7 @@ handles your verbs.</p>
 <li><a href="#file">File</a></li>
 <li><a href="#hash">Hash</a></li>
 <li><a href="#interface">Interface</a></li>
-<li><a href="#model">Model</a></li>
+<li><a href="#object">Object</a></li>
 <li><a href="#string">String</a></li>
 <li><a href="#symbol">Symbol</a></li>
 <li>
@@ -127,11 +127,11 @@ handles your verbs.</p>
 
 <p>Add it to your Gemfile:</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.0<span class="pl-pds">'</span></span></pre></div>
 
 <p>Or install it manually:</p>
 
-<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 1.5<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.0<span class="pl-pds">'</span></span></pre></div>
 
 <p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
 detailed list of changes.</p>
@@ -173,8 +173,8 @@ squares a number.</p>
 <p>Call <code>.run</code> on your interaction to execute it. You must pass a single hash to
 <code>.run</code>. It will return an instance of your interaction. By convention, we call
 this an outcome. You can use the <code>#valid?</code> method to ask the outcome if it's
-valid. If it's invalid, take a look at its errors with <code>#errors</code>. If it's
-valid, <code>#result</code> will be the value returned from <code>#execute</code>.</p>
+valid. If it's invalid, take a look at its errors with <code>#errors</code>. In either
+case, the value returned from <code>#execute</code> will be stored in <code>#result</code>.</p>
 
 <div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 outcome.valid?
@@ -413,11 +413,11 @@ set of methods. This allows you to do duck typing with interactions.</p>
 <span class="pl-c"># =&gt; "{\"is_json\":true}"</span></pre></div>
 
 <h3>
-<a id="model" class="anchor" href="#model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model</h3>
+<a id="object" class="anchor" href="#object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object</h3>
 
-<p>Model filters allow you to require an instance of a particular class. It checks
-either <code>#is_a?</code> on the instance or <code>.===</code> on the class. Because of that, it
-also works with classes that have mixed modules in with <code>include</code>.</p>
+<p>Object filters allow you to require an instance of a particular class. It
+checks either <code>#is_a?</code> on the instance or <code>.===</code> on the class. Because of that,
+it also works with classes that have mixed modules in with <code>include</code>.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Cow</span>
   <span class="pl-k">def</span> <span class="pl-en">moo</span>
@@ -425,28 +425,28 @@ also works with classes that have mixed modules in with <code>include</code>.</p
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-k">class</span> <span class="pl-en">ModelInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:cow</span>
+<span class="pl-k">class</span> <span class="pl-en">ObjectInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  object <span class="pl-c1">:cow</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     cow.moo
   <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 
-<span class="pl-c1">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Object</span>.<span class="pl-k">new</span>)
-<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Cow is not a valid model</span>
-<span class="pl-c1">ModelInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Cow</span>.<span class="pl-k">new</span>)
+<span class="pl-c1">ObjectInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Object</span>.<span class="pl-k">new</span>)
+<span class="pl-c"># ActiveInteraction::InvalidInteractionError: Cow is not a valid object</span>
+<span class="pl-c1">ObjectInteraction</span>.run!(<span class="pl-c1">cow:</span> <span class="pl-c1">Cow</span>.<span class="pl-k">new</span>)
 <span class="pl-c"># =&gt; "Moo!"</span></pre></div>
 
 <p>The class name is automatically determined by the filter name. If your filter
 name is different than your class name, use the <code>class</code> option. It can be
 either the class, a string, or a symbol.</p>
 
-<div class="highlight highlight-rb"><pre>model <span class="pl-c1">:dolly1</span>,
+<div class="highlight highlight-rb"><pre>object <span class="pl-c1">:dolly1</span>,
   <span class="pl-c1">class:</span> <span class="pl-c1">Sheep</span>
-model <span class="pl-c1">:dolly2</span>,
+object <span class="pl-c1">:dolly2</span>,
   <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">'</span>Sheep<span class="pl-pds">'</span></span>
-model <span class="pl-c1">:dolly3</span>,
+object <span class="pl-c1">:dolly3</span>,
   <span class="pl-c1">class:</span> <span class="pl-c1">:Sheep</span></pre></div>
 
 <h3>
@@ -792,7 +792,7 @@ you need to do more than <code>account.destroy</code>, you'll only have to updat
 spot.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DestroyAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:account</span>
+  object <span class="pl-c1">:account</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     account.destroy
@@ -823,7 +823,7 @@ inputs. They will return <code>false</code> if the input is <code>nil</code> and
 Skip to <a href="#predicates">the predicates section</a> for more information about them.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:account</span>
+  object <span class="pl-c1">:account</span>
 
   string <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>,
     <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
@@ -1000,13 +1000,13 @@ hash of filters. Each filter has a <code>#desc</code> method that returns the de
 <h3>
 <a id="errors" class="anchor" href="#errors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Errors</h3>
 
-<p>ActiveInteraction provides symbolic errors for easier introspection and testing
-of errors. Symbolic errors improve on regular errors by adding a symbol that
+<p>ActiveInteraction provides detailed errors for easier introspection and testing
+of errors. Detailed errors improve on regular errors by adding a symbol that
 represents the type of error that has occurred. Let's look at an example where
 an item is purchased using a credit card.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">BuyItem<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:credit_card</span>, <span class="pl-c1">:item</span>
+  object <span class="pl-c1">:credit_card</span>, <span class="pl-c1">:item</span>
   hash <span class="pl-c1">:options</span> <span class="pl-k">do</span>
     boolean <span class="pl-c1">:gift_wrapped</span>
   <span class="pl-k">end</span>
@@ -1027,22 +1027,24 @@ errors.</p>
 
 <div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
 outcome.errors.messages
-<span class="pl-c"># =&gt; {:credit_card=&gt;["is required"], :item=&gt;["is not a valid model"], :options=&gt;["has an invalid nested value (\"gift_wrapped\" =&gt; \"yes\")"]}</span></pre></div>
+<span class="pl-c"># =&gt; {:credit_card=&gt;["is required"], :item=&gt;["is not a valid object"], :options=&gt;["has an invalid nested value (\"gift_wrapped\" =&gt; \"yes\")"]}</span></pre></div>
 
 <p>Determining the type of error based on the string is difficult if not
-impossible. Calling <code>#symbolic</code> instead of <code>#messages</code> on <code>errors</code> gives you
+impossible. Calling <code>#details</code> instead of <code>#messages</code> on <code>errors</code> gives you
 the same list of errors with a testable label representing the error.</p>
 
-<div class="highlight highlight-rb"><pre>outcome.errors.symbolic
-<span class="pl-c"># =&gt; {"credit_card"=&gt;[:missing], "item"=&gt;[:invalid_type], "options"=&gt;[:invalid_nested]}</span></pre></div>
+<div class="highlight highlight-rb"><pre>outcome.errors.details
+<span class="pl-c"># =&gt; {:credit_card=&gt;[{:error=&gt;:missing}], :item=&gt;[{:type=&gt;"object", :error=&gt;:invalid_type}], :options=&gt;[{:name=&gt;"\"gift_wrapped\"", :value=&gt;"\"yes\"", :error=&gt;:invalid_nested}]}</span></pre></div>
 
-<p>Symbolic errors can also be manually added during the execute call by calling
-<code>#add_sym</code> instead of <code>#add</code> on <code>errors</code>. It works the same way as <code>add</code> except
-that the second argument is the error label.</p>
+<p>Detailed errors can also be manually added during the execute call by passing a
+symbol to <code>#add</code> instead of a string.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
-  errors.add_sym(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>, <span class="pl-s"><span class="pl-pds">'</span>You shall not pass!<span class="pl-pds">'</span></span>)
+  errors.add(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>)
 <span class="pl-k">end</span></pre></div>
+
+<p>These types of errors will become standard with Rails 5. ActiveInteraction's
+implementation is based off of <a href="https://github.com/cowbell/active_model-errors_details">active_model-errors_details</a>.</p>
 
 <p>ActiveInteraction also supports merging errors. This is useful if you want to
 delegate validation to some other object. For example, if you have an
@@ -1050,7 +1052,7 @@ interaction that updates a record, you might want that record to validate
 itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can do exactly that.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateThing<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  model <span class="pl-c1">:thing</span>
+  object <span class="pl-c1">:thing</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     <span class="pl-k">unless</span> thing.save
@@ -1158,7 +1160,7 @@ everything out backwards. Simply add translations for ActiveInteraction to your
       <span class="pl-s"><span class="pl-ent">hash:</span> <span class="pl-s">hsah</span></span>
       <span class="pl-s"><span class="pl-ent">integer:</span> <span class="pl-s">regetni</span></span>
       <span class="pl-s"><span class="pl-ent">interface:</span> <span class="pl-s">ecafretni</span></span>
-      <span class="pl-s"><span class="pl-ent">model:</span> <span class="pl-s">ledom</span></span>
+      <span class="pl-s"><span class="pl-ent">object:</span> <span class="pl-s">tcejbo</span></span>
       <span class="pl-s"><span class="pl-ent">string:</span> <span class="pl-s">gnirts</span></span>
       <span class="pl-s"><span class="pl-ent">symbol:</span> <span class="pl-s">lobmys</span></span>
       <span class="pl-s"><span class="pl-ent">time:</span> <span class="pl-s">emit</span></span>
