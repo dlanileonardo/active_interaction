@@ -29,11 +29,11 @@
 </p>
 
 <p align="center">
-  <a href="https://rubygems.org/gems/active_interaction"><img alt="" src="https://img.shields.io/gem/v/active_interaction.svg?label=version&amp;style=flat-square"></a>
-  <a href="https://travis-ci.org/orgsync/active_interaction"><img alt="" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?label=build&amp;style=flat-square"></a>
-  <a href="https://coveralls.io/r/orgsync/active_interaction"><img alt="" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?label=coverage&amp;style=flat-square"></a>
-  <a href="https://codeclimate.com/github/orgsync/active_interaction"><img alt="" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?label=climate&amp;style=flat-square"></a>
-  <a href="https://gemnasium.com/orgsync/active_interaction"><img alt="" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?label=dependencies&amp;style=flat-square"></a>
+  <a href="https://rubygems.org/gems/active_interaction"><img alt="Version" src="https://img.shields.io/gem/v/active_interaction.svg?label=version&amp;style=flat-square"></a>
+  <a href="https://travis-ci.org/orgsync/active_interaction"><img alt="Build" src="https://img.shields.io/travis/orgsync/active_interaction/master.svg?label=build&amp;style=flat-square"></a>
+  <a href="https://coveralls.io/r/orgsync/active_interaction"><img alt="Coverage" src="https://img.shields.io/coveralls/orgsync/active_interaction/master.svg?label=coverage&amp;style=flat-square"></a>
+  <a href="https://codeclimate.com/github/orgsync/active_interaction"><img alt="Climate" src="https://img.shields.io/codeclimate/github/orgsync/active_interaction.svg?label=climate&amp;style=flat-square"></a>
+  <a href="https://gemnasium.com/orgsync/active_interaction"><img alt="Dependencies" src="https://img.shields.io/gemnasium/orgsync/active_interaction.svg?label=dependencies&amp;style=flat-square"></a>
 </p>
 
 <hr>
@@ -134,7 +134,8 @@ handles your verbs.</p>
 <div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.0<span class="pl-pds">'</span></span></pre></div>
 
 <p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
-detailed list of changes.</p>
+detailed list of changes. For help upgrading to version 2, please read <a href="http://devblog.orgsync.com/2015/05/06/announcing-active-interaction-2/">the
+announcement post</a>.</p>
 
 <p>ActiveInteraction works with all supported versions of Ruby (2.0 through 2.2)
 and ActiveModel (3.2 through 4.2).</p>
@@ -1066,9 +1067,12 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
 <h3>
 <a id="forms" class="anchor" href="#forms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Forms</h3>
 
-<p>The outcome returned by <code>.run</code> can be used in forms as though it were an ActiveModel object. You can also create a form object by calling <code>.new</code> on the interaction.</p>
+<p>The outcome returned by <code>.run</code> can be used in forms as though it were an
+ActiveModel object. You can also create a form object by calling <code>.new</code> on the
+interaction.</p>
 
-<p>Given an application with an <code>Account</code> model we'll create a new <code>Account</code> using the <code>CreateAccount</code> interaction.</p>
+<p>Given an application with an <code>Account</code> model we'll create a new <code>Account</code> using
+the <code>CreateAccount</code> interaction.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
 <span class="pl-k">def</span> <span class="pl-en">new</span>
@@ -1087,32 +1091,52 @@ itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
-<p>The form used to create a new <code>Account</code> has slightly more information on the <code>form_for</code> call than you might expect.</p>
+<p>The form used to create a new <code>Account</code> has slightly more information on the
+<code>form_for</code> call than you might expect.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-smi">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-smi">f</span>| <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">  &lt;%= f.text_field :first_name %<span class="pl-pds">&gt;</span></span>
-  <span class="pl-k">&lt;</span><span class="pl-k">%=</span> f.text_field <span class="pl-c1">:last_name</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">  &lt;%= f.submit 'Create' %<span class="pl-pds">&gt;</span></span>
-<span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span></pre></div>
+<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_for <span class="pl-smi">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:first_name</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:last_name</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.submit <span class="pl-s"><span class="pl-pds">'</span>Create<span class="pl-pds">'</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
 
-<p>This is necessary because we want the form to act like it is creating a new <code>Account</code>. Defining <code>to_model</code> on the <code>CreateAccount</code> interaction tells the form to treat our interaction like an <code>Account</code>.</p>
+<p>This is necessary because we want the form to act like it is creating a new
+<code>Account</code>. Defining <code>to_model</code> on the <code>CreateAccount</code> interaction tells the
+form to treat our interaction like an <code>Account</code>.</p>
 
 <div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
-  ...
+  <span class="pl-c"># ...</span>
 
   <span class="pl-k">def</span> <span class="pl-en">to_model</span>
     <span class="pl-c1">Account</span>.<span class="pl-k">new</span>
   <span class="pl-k">end</span>
 <span class="pl-k">end</span></pre></div>
 
-<p>Now our <code>form_for</code> call knows how to generate the correct URL and param name (i.e. <code>params[:account]</code>).</p>
+<p>Now our <code>form_for</code> call knows how to generate the correct URL and param name
+(i.e. <code>params[:account]</code>).</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># app/views/accounts/new.html.erb</span>
-<span class="pl-k">&lt;</span><span class="pl-k">%=</span> form_for <span class="pl-smi">@account</span> <span class="pl-k">do </span>|<span class="pl-smi">f</span>| <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">  ...</span>
-<span class="pl-s">&lt;% end %<span class="pl-pds">&gt;</span></span></pre></div>
+<div class="highlight highlight-erb"><pre># app/views/accounts/new.html.erb
+<span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_for <span class="pl-smi">@account</span> <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+  <span class="pl-c">&lt;%# ... %&gt;</span>
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
 
-<p>ActiveInteraction also supports <a href="https://rubygems.org/gems/formtastic">formtastic</a> and <a href="https://rubygems.org/gems/simple_form">simple_form</a>. The filters used to define the inputs on your interaction will relay type information to these gems. As a result, form fields will automatically use the appropriate input type.</p>
+<p>If you have an interaction that updates an <code>Account</code>, you can define <code>to_model</code>
+to return the object you're updating.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  <span class="pl-c"># ...</span>
+
+  object <span class="pl-c1">:account</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">to_model</span>
+    account
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>ActiveInteraction also supports <a href="https://rubygems.org/gems/formtastic">formtastic</a> and <a href="https://rubygems.org/gems/simple_form">simple_form</a>. The filters
+used to define the inputs on your interaction will relay type information to
+these gems. As a result, form fields will automatically use the appropriate
+input type.</p>
 
 <h3>
 <a id="predicates" class="anchor" href="#predicates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicates</h3>
@@ -1195,7 +1219,7 @@ by <a href="https://github.com/cypriss">Jonathan Novak</a> on <a href="https://g
 <a href="CONTRIBUTING.md">our contribution guidelines</a>. A <a href="https://github.com/orgsync/active_interaction/graphs/contributors">complete list of contributors</a> is
 available on GitHub.</p>
 
-<p>ActiveInteraction is licensed under <a href="LICENSE.txt">the MIT License</a>.</p>
+<p>ActiveInteraction is licensed under <a href="LICENSE.md">the MIT License</a>.</p>
 
 <p>Logo design by <a href="https://github.com/tylerlee">Tyler Lee</a>.</p>
 
