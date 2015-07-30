@@ -111,6 +111,7 @@ handles your verbs.</p>
 <li><a href="#descriptions">Descriptions</a></li>
 <li><a href="#errors">Errors</a></li>
 <li><a href="#forms">Forms</a></li>
+<li><a href="#optional-inputs">Optional inputs</a></li>
 <li><a href="#predicates">Predicates</a></li>
 <li><a href="#translations">Translations</a></li>
 </ul>
@@ -123,11 +124,11 @@ handles your verbs.</p>
 
 <p>Add it to your Gemfile:</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.0<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
 
 <p>Or install it manually:</p>
 
-<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.0<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
 
 <p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
 detailed list of changes. For help upgrading to version 2, please read <a href="http://devblog.orgsync.com/2015/05/06/announcing-active-interaction-2/">the
@@ -294,8 +295,12 @@ Rails, so <code>"1"</code> can be interpreted as the boolean value <code>true</c
   date
 <span class="pl-k">end</span></pre></div>
 
-<p>Note that filters inside an array block don't have names. Also you can only
-have one filter inside an array block.</p>
+<p>Note that you can only have one filter inside an array block, and it must not
+have a name.</p>
+
+<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:cows</span> <span class="pl-k">do</span>
+  object <span class="pl-c1">class:</span> <span class="pl-c1">Cow</span>
+<span class="pl-k">end</span></pre></div>
 
 <h3>
 <a id="boolean" class="anchor" href="#boolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>Boolean</h3>
@@ -1133,6 +1138,41 @@ to return the object you're updating.</p>
 used to define the inputs on your interaction will relay type information to
 these gems. As a result, form fields will automatically use the appropriate
 input type.</p>
+
+<h3>
+<a id="optional-inputs" class="anchor" href="#optional-inputs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional inputs</h3>
+
+<p>Optional inputs can be defined by using the <code>:default</code> option as described in
+<a href="#filters">the Filters section</a>. Within the interaction, provided and default values
+are merged to create <code>inputs</code>. There are times where it is useful to know
+whether a value was passed to <code>run</code> or the result of a filter default. In
+particular, it is useful when <code>nil</code> is an acceptable value. For example, you
+may optionally track your users' birthdays. You can use the <code>given?</code> predicate
+to see if an input was even passed to <code>run</code>.</p>
+
+<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateUser<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+  object <span class="pl-c1">:user</span>
+  date <span class="pl-c1">:birthday</span>,
+    <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">execute</span>
+    user.birthday <span class="pl-k">=</span> birthday <span class="pl-k">if</span> given?(<span class="pl-c1">:birthday</span>)
+    errors.merge!(user) <span class="pl-k">unless</span> user.save
+    user
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Now you have a few options. If you don't want to update their birthday, leave
+it out of the hash. If you want to remove their birthday, set <code>birthday: nil</code>.
+And if you want to update it, pass in the new value as usual.</p>
+
+<div class="highlight highlight-rb"><pre>user <span class="pl-k">=</span> <span class="pl-c1">User</span>.find(...)
+<span class="pl-c"># Don't update their birthday.</span>
+<span class="pl-c1">UpdateUser</span>.run!(<span class="pl-c1">user:</span> user)
+<span class="pl-c"># Remove their birthday.</span>
+<span class="pl-c1">UpdateUser</span>.run!(<span class="pl-c1">user:</span> user, <span class="pl-c1">birthday:</span> <span class="pl-c1">nil</span>)
+<span class="pl-c"># Update their birthday.</span>
+<span class="pl-c1">UpdateUser</span>.run!(<span class="pl-c1">user:</span> user, <span class="pl-c1">birthday:</span> <span class="pl-c1">Date</span>.<span class="pl-k">new</span>(<span class="pl-c1">2000</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>))</pre></div>
 
 <h3>
 <a id="predicates" class="anchor" href="#predicates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicates</h3>
