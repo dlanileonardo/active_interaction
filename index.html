@@ -124,11 +124,11 @@ handles your verbs.</p>
 
 <p>Add it to your Gemfile:</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
 
 <p>Or install it manually:</p>
 
-<div class="highlight highlight-sh"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-shell"><pre>$ gem install active_interaction --version <span class="pl-s"><span class="pl-pds">'</span>~&gt; 2.1<span class="pl-pds">'</span></span></pre></div>
 
 <p>This project uses <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. Check out <a href="CHANGELOG.md">the change log</a> for a
 detailed list of changes. For help upgrading to version 2, please read <a href="http://devblog.orgsync.com/2015/05/06/announcing-active-interaction-2/">the
@@ -158,7 +158,7 @@ section</a> if you need more than that.</p></li>
 <p>That covers the basics. Let's put it all together into a simple example that
 squares a number.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>active_interaction<span class="pl-pds">'</span></span>
 
 <span class="pl-k">class</span> <span class="pl-en">Square<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   float <span class="pl-c1">:x</span>
@@ -174,7 +174,7 @@ this an outcome. You can use the <code>#valid?</code> method to ask the outcome 
 valid. If it's invalid, take a look at its errors with <code>#errors</code>. In either
 case, the value returned from <code>#execute</code> will be stored in <code>#result</code>.</p>
 
-<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-source-ruby"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">Square</span>.run(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 outcome.valid?
 <span class="pl-c"># =&gt; nil</span>
 outcome.errors.messages
@@ -191,7 +191,7 @@ dangerous. It doesn't return an outcome. If the outcome would be invalid, it
 will instead raise an error. But if the outcome would be valid, it simply
 returns the result.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c1">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-s"><span class="pl-pds">'</span>two point one<span class="pl-pds">'</span></span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: X is not a valid float</span>
 <span class="pl-c1">Square</span>.run!(<span class="pl-c1">x:</span> <span class="pl-c1">2.1</span>)
 <span class="pl-c"># =&gt; 4.41</span></pre></div>
@@ -208,7 +208,7 @@ can use validations from ActiveModel.</p>
 ActiveModel. You can also use any custom validations you wrote yourself in your
 interactions.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:name</span>
 
   validates <span class="pl-c1">:name</span>,
@@ -223,7 +223,7 @@ interactions.</p>
 will type check your inputs. Then ActiveModel will validate them. If both of
 those are happy, it will be executed.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-c1">nil</span>)
 <span class="pl-c"># ActiveInteraction::InvalidInteractionError: Name is required</span>
 
 <span class="pl-c1">SayHello</span>.run!(<span class="pl-c1">name:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)
@@ -259,7 +259,7 @@ filters support this. Other filters will ignore blocks when given to them.</p></
 <code>z</code>. Those inputs are optional and they all share the same description ("an
 example filter").</p>
 
-<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>, <span class="pl-c1">:z</span>,
+<div class="highlight highlight-source-ruby"><pre>array <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>, <span class="pl-c1">:z</span>,
   <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>,
   <span class="pl-c1">desc:</span> <span class="pl-s"><span class="pl-pds">'</span>an example filter<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
     <span class="pl-c"># Some filters support sub-filters here.</span>
@@ -276,7 +276,7 @@ Rails, so <code>"1"</code> can be interpreted as the boolean value <code>true</c
 <p>In addition to accepting arrays, array inputs will convert
 <code>ActiveRecord::Relation</code>s into arrays.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">ArrayInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">ArrayInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   array <span class="pl-c1">:toppings</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -291,14 +291,14 @@ Rails, so <code>"1"</code> can be interpreted as the boolean value <code>true</c
 
 <p>Use a block to constrain the types of elements an array can contain.</p>
 
-<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:birthdays</span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>array <span class="pl-c1">:birthdays</span> <span class="pl-k">do</span>
   date
 <span class="pl-k">end</span></pre></div>
 
 <p>Note that you can only have one filter inside an array block, and it must not
 have a name.</p>
 
-<div class="highlight highlight-rb"><pre>array <span class="pl-c1">:cows</span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>array <span class="pl-c1">:cows</span> <span class="pl-k">do</span>
   object <span class="pl-c1">class:</span> <span class="pl-c1">Cow</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -308,7 +308,7 @@ have a name.</p>
 <p>Boolean filters convert the strings <code>"1"</code> and <code>"true"</code> (case-insensitive) into
 <code>true</code>. They also convert <code>"0"</code> and <code>"false"</code> into <code>false</code>.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">BooleanInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">BooleanInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   boolean <span class="pl-c1">:kool_aid</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -328,7 +328,7 @@ have a name.</p>
 That means that you can pass the <code>params</code> from uploading files via forms in
 Rails.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FileInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">FileInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   file <span class="pl-c1">:readme</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -348,7 +348,7 @@ Rails.</p>
 block and nesting other filters. You can have any number of filters inside a
 hash, including other hashes.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">HashInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">HashInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   hash <span class="pl-c1">:preferences</span> <span class="pl-k">do</span>
     boolean <span class="pl-c1">:newsletter</span>
     boolean <span class="pl-c1">:sweepstakes</span>
@@ -370,7 +370,7 @@ hash, including other hashes.</p>
 <code>nil</code> or <code>{}</code>. Use <code>nil</code> to make the hash optional. Use <code>{}</code> if you want to set
 some defaults for values inside the hash.</p>
 
-<div class="highlight highlight-rb"><pre>hash <span class="pl-c1">:optional</span>,
+<div class="highlight highlight-source-ruby"><pre>hash <span class="pl-c1">:optional</span>,
   <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
 <span class="pl-c"># =&gt; {:optional=&gt;nil}</span>
 
@@ -385,7 +385,7 @@ hash <span class="pl-c1">:with_defaults</span>,
 allow all hash keys, set <code>strip: false</code>. In general we don't recommend doing
 this, but it's sometimes necessary.</p>
 
-<div class="highlight highlight-rb"><pre>hash <span class="pl-c1">:stuff</span>,
+<div class="highlight highlight-source-ruby"><pre>hash <span class="pl-c1">:stuff</span>,
   <span class="pl-c1">strip:</span> <span class="pl-c1">false</span></pre></div>
 
 <h3>
@@ -394,7 +394,7 @@ this, but it's sometimes necessary.</p>
 <p>Interface filters allow you to specify that an object must respond to a certain
 set of methods. This allows you to do duck typing with interactions.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">InterfaceInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">InterfaceInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   interface <span class="pl-c1">:serializer</span>,
     <span class="pl-c1">methods:</span> <span class="pl-k">%</span>i[dump load]
 
@@ -421,7 +421,7 @@ set of methods. This allows you to do duck typing with interactions.</p>
 checks either <code>#is_a?</code> on the instance or <code>.===</code> on the class. Because of that,
 it also works with classes that have mixed modules in with <code>include</code>.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Cow</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Cow</span>
   <span class="pl-k">def</span> <span class="pl-en">moo</span>
     <span class="pl-s"><span class="pl-pds">'</span>Moo!<span class="pl-pds">'</span></span>
   <span class="pl-k">end</span>
@@ -444,7 +444,7 @@ it also works with classes that have mixed modules in with <code>include</code>.
 name is different than your class name, use the <code>class</code> option. It can be
 either the class, a string, or a symbol.</p>
 
-<div class="highlight highlight-rb"><pre>object <span class="pl-c1">:dolly1</span>,
+<div class="highlight highlight-source-ruby"><pre>object <span class="pl-c1">:dolly1</span>,
   <span class="pl-c1">class:</span> <span class="pl-c1">Sheep</span>
 object <span class="pl-c1">:dolly2</span>,
   <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">'</span>Sheep<span class="pl-pds">'</span></span>
@@ -456,7 +456,7 @@ object <span class="pl-c1">:dolly3</span>,
 
 <p>String filters define inputs that only accept strings.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">StringInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">StringInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:name</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -472,7 +472,7 @@ object <span class="pl-c1">:dolly3</span>,
 <p>If you want to strip leading and trailing whitespace from a string, set the
 <code>strip</code> option to <code>true</code>.</p>
 
-<div class="highlight highlight-rb"><pre>string <span class="pl-c1">:comment</span>,
+<div class="highlight highlight-source-ruby"><pre>string <span class="pl-c1">:comment</span>,
   <span class="pl-c1">strip:</span> <span class="pl-c1">true</span></pre></div>
 
 <h3>
@@ -481,7 +481,7 @@ object <span class="pl-c1">:dolly3</span>,
 <p>Symbol filters define inputs that accept symbols. Strings will be converted
 into symbols.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SymbolInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">SymbolInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   symbol <span class="pl-c1">:method</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -505,7 +505,7 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
 <h4>
 <a id="date" class="anchor" href="#date" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DateInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">DateInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   date <span class="pl-c1">:birthday</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -518,13 +518,13 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
 <span class="pl-c1">DateInteraction</span>.run!(<span class="pl-c1">birthday:</span> <span class="pl-c1">Date</span>.<span class="pl-k">new</span>(<span class="pl-c1">1989</span>, <span class="pl-c1">9</span>, <span class="pl-c1">1</span>))
 <span class="pl-c"># =&gt; #&lt;Date: 2007-08-28 ((2454341j,0s,0n),+0s,2299161j)&gt;</span></pre></div>
 
-<div class="highlight highlight-rb"><pre>date <span class="pl-c1">:birthday</span>,
+<div class="highlight highlight-source-ruby"><pre>date <span class="pl-c1">:birthday</span>,
   <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%d<span class="pl-pds">'</span></span></pre></div>
 
 <h4>
 <a id="datetime" class="anchor" href="#datetime" aria-hidden="true"><span class="octicon octicon-link"></span></a>DateTime</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DateTimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">DateTimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   date_time <span class="pl-c1">:now</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -537,7 +537,7 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
 <span class="pl-c1">DateTimeInteraction</span>.run!(<span class="pl-c1">now:</span> <span class="pl-c1">DateTime</span>.now)
 <span class="pl-c"># =&gt; "2015-03-11T11:04:40-05:00"</span></pre></div>
 
-<div class="highlight highlight-rb"><pre>date_time <span class="pl-c1">:start</span>,
+<div class="highlight highlight-source-ruby"><pre>date_time <span class="pl-c1">:start</span>,
   <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
 
 <h4>
@@ -546,7 +546,7 @@ formats won't work with <code>DateTime</code> and <code>Time</code> filters if a
 <p>In addition to converting strings with <code>.parse</code> (or <code>.strptime</code>), time filters
 convert numbers with <code>.at</code>.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">TimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">TimeInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   time <span class="pl-c1">:epoch</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -559,7 +559,7 @@ convert numbers with <code>.at</code>.</p>
 <span class="pl-c1">TimeInteraction</span>.run!(<span class="pl-c1">epoch:</span> <span class="pl-c1">Time</span>.<span class="pl-k">new</span>(<span class="pl-c1">1970</span>))
 <span class="pl-c"># =&gt; 1426068362.5136619</span></pre></div>
 
-<div class="highlight highlight-rb"><pre>time <span class="pl-c1">:start</span>,
+<div class="highlight highlight-source-ruby"><pre>time <span class="pl-c1">:start</span>,
   <span class="pl-c1">format:</span> <span class="pl-s"><span class="pl-pds">'</span>%Y-%m-%dT%H:%M:%S<span class="pl-pds">'</span></span></pre></div>
 
 <h3>
@@ -571,7 +571,7 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
 <h4>
 <a id="decimal" class="anchor" href="#decimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decimal</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DecimalInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">DecimalInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   decimal <span class="pl-c1">:price</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -586,13 +586,13 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
 
 <p>To specify the number of significant digits, use the <code>digits</code> option.</p>
 
-<div class="highlight highlight-rb"><pre>decimal <span class="pl-c1">:dollars</span>,
+<div class="highlight highlight-source-ruby"><pre>decimal <span class="pl-c1">:dollars</span>,
   <span class="pl-c1">digits:</span> <span class="pl-c1">2</span></pre></div>
 
 <h4>
 <a id="float" class="anchor" href="#float" aria-hidden="true"><span class="octicon octicon-link"></span></a>Float</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FloatInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">FloatInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   float <span class="pl-c1">:x</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -608,7 +608,7 @@ the appropriate method from <code>Kernel</code> (like <code>.Float</code>).</p>
 <h4>
 <a id="integer" class="anchor" href="#integer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integer</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">IntegerInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">IntegerInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   integer <span class="pl-c1">:limit</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -635,7 +635,7 @@ resourceful actions.</p>
 <h4>
 <a id="index" class="anchor" href="#index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h4>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># GET /accounts</span>
 <span class="pl-k">def</span> <span class="pl-en">index</span>
   <span class="pl-smi">@accounts</span> <span class="pl-k">=</span> <span class="pl-c1">ListAccounts</span>.run!
 <span class="pl-k">end</span></pre></div>
@@ -644,7 +644,7 @@ resourceful actions.</p>
 <code>.run!</code> instead of <code>.run</code>. If it failed, that would mean we probably messed up
 writing the interaction.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">ListAccounts<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">ListAccounts<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
     <span class="pl-c1">Account</span>.not_deleted.order(<span class="pl-c1">last_name:</span> <span class="pl-c1">:asc</span>, <span class="pl-c1">first_name:</span> <span class="pl-c1">:asc</span>)
   <span class="pl-k">end</span>
@@ -659,7 +659,7 @@ raise an <code>ActiveInteraction::InvalidInteractionError</code> instead of an
 <code>ActiveRecord::RecordNotFound</code>. That means Rails would render a 500 instead of
 a 404.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># GET /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">show</span>
   <span class="pl-smi">@account</span> <span class="pl-k">=</span> find_account!
 <span class="pl-k">end</span>
@@ -689,7 +689,7 @@ the error would bubble all the way up. However, you should try to avoid raising
 errors from interactions. If you do, you'll have to deal with raised exceptions
 as well as the validity of the outcome.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">FindAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">FindAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   integer <span class="pl-c1">:id</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -713,7 +713,7 @@ have to come from type checking or validation.</p>
 Instead of calling <code>.run</code> or <code>.run!</code>, it's going to initialize a new
 interaction. This is possible because interactions behave like ActiveModels.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># GET /accounts/new</span>
 <span class="pl-k">def</span> <span class="pl-en">new</span>
   <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.<span class="pl-k">new</span>
 <span class="pl-k">end</span></pre></div>
@@ -723,7 +723,7 @@ with them. We'll use validations here to make sure that the first and last
 names are not blank. <a href="#validations">The validations section</a> goes into more
 detail about this.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>
 
   validates <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>,
@@ -757,7 +757,7 @@ in <a href="#errors">the errors section</a>.</p>
 <code>CreateAccount</code> interaction. And if creating the account fails, this action
 falls back to rendering the new action.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># POST /accounts</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># POST /accounts</span>
 <span class="pl-k">def</span> <span class="pl-en">create</span>
   outcome <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.run(params.fetch(<span class="pl-c1">:account</span>, {}))
 
@@ -782,7 +782,7 @@ that for you.</p>
 <p>The destroy action will reuse the <code>#find_account!</code> helper method we wrote
 earlier.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># DELETE /accounts/:id</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># DELETE /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">destroy</span>
   <span class="pl-c1">DestroyAccount</span>.run!(<span class="pl-c1">account:</span> find_account!)
   redirect_to(accounts_url)
@@ -793,7 +793,7 @@ that you gain anything by putting it in an interaction. But in the future, when
 you need to do more than <code>account.destroy</code>, you'll only have to update one
 spot.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">DestroyAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">DestroyAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   object <span class="pl-c1">:account</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -807,7 +807,7 @@ spot.</p>
 <p>Just like the destroy action, editing uses the <code>#find_account!</code> helper. Then it
 creates a new interaction instance to use as a form object.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/:id/edit</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># GET /accounts/:id/edit</span>
 <span class="pl-k">def</span> <span class="pl-en">edit</span>
   account <span class="pl-k">=</span> find_account!
   <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">UpdateAccount</span>.<span class="pl-k">new</span>(
@@ -824,7 +824,7 @@ missing, it'll ignore those attributes. If they're present, it'll update them.</
 inputs. They will return <code>false</code> if the input is <code>nil</code> and <code>true</code> otherwise.
 Skip to <a href="#predicates">the predicates section</a> for more information about them.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   object <span class="pl-c1">:account</span>
 
   string <span class="pl-c1">:first_name</span>, <span class="pl-c1">:last_name</span>,
@@ -857,7 +857,7 @@ get the account. Then we'll build up the inputs for <code>UpdateAccount</code>. 
 run the interaction and either redirect to the updated account or back to the
 edit page.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># PUT /accounts/:id</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># PUT /accounts/:id</span>
 <span class="pl-k">def</span> <span class="pl-en">update</span>
   inputs <span class="pl-k">=</span> { <span class="pl-c1">account:</span> find_account! }.reverse_merge(params[<span class="pl-c1">:account</span>])
   outcome <span class="pl-k">=</span> <span class="pl-c1">UpdateAccount</span>.run(inputs)
@@ -907,7 +907,7 @@ helpful to group them by model. That way you can look in
 ActiveInteraction hooks into that framework to allow hooking into various parts
 of an interaction's lifecycle.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Increment<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Increment<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   set_callback <span class="pl-c1">:type_check</span>, <span class="pl-c1">:before</span>, <span class="pl-k">-</span><span class="pl-k">&gt;</span> { puts <span class="pl-s"><span class="pl-pds">'</span>before type check<span class="pl-pds">'</span></span> }
 
   integer <span class="pl-c1">:x</span>
@@ -948,7 +948,7 @@ interaction is successful, it'll return the result (just like if you had called
 it with <code>.run!</code>). If something went wrong, execution will halt immediately and
 the errors will be moved onto the caller.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Add<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Add<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   integer <span class="pl-c1">:x</span>, <span class="pl-c1">:y</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -970,7 +970,7 @@ the errors will be moved onto the caller.</p>
 <p>To bring in filters from another interaction, use <code>.import_filters</code>. Combined
 with <code>inputs</code>, delegating to another interaction is a piece of cake.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">AddAndDouble<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">AddAndDouble<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   import_filters <span class="pl-c1">Add</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -986,7 +986,7 @@ should prefer these to comments because they can be used to generate
 documentation. The interaction class has a <code>.filters</code> method that returns a
 hash of filters. Each filter has a <code>#desc</code> method that returns the description.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">Descriptive<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Descriptive<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:first_name</span>,
     <span class="pl-c1">desc:</span> <span class="pl-s"><span class="pl-pds">'</span>your first name<span class="pl-pds">'</span></span>
   string <span class="pl-c1">:last_name</span>,
@@ -1007,7 +1007,7 @@ of errors. Detailed errors improve on regular errors by adding a symbol that
 represents the type of error that has occurred. Let's look at an example where
 an item is purchased using a credit card.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">BuyItem<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">BuyItem<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   object <span class="pl-c1">:credit_card</span>, <span class="pl-c1">:item</span>
   hash <span class="pl-c1">:options</span> <span class="pl-k">do</span>
     boolean <span class="pl-c1">:gift_wrapped</span>
@@ -1027,7 +1027,7 @@ an item is purchased using a credit card.</p>
 <p>Having missing or invalid inputs causes the interaction to fail and return
 errors.</p>
 
-<div class="highlight highlight-rb"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
+<div class="highlight highlight-source-ruby"><pre>outcome <span class="pl-k">=</span> <span class="pl-c1">BuyItem</span>.run(<span class="pl-c1">item:</span> <span class="pl-s"><span class="pl-pds">'</span>Thing<span class="pl-pds">'</span></span>, <span class="pl-c1">options:</span> { <span class="pl-c1">gift_wrapped:</span> <span class="pl-s"><span class="pl-pds">'</span>yes<span class="pl-pds">'</span></span> })
 outcome.errors.messages
 <span class="pl-c"># =&gt; {:credit_card=&gt;["is required"], :item=&gt;["is not a valid object"], :options=&gt;["has an invalid nested value (\"gift_wrapped\" =&gt; \"yes\")"]}</span></pre></div>
 
@@ -1035,13 +1035,13 @@ outcome.errors.messages
 impossible. Calling <code>#details</code> instead of <code>#messages</code> on <code>errors</code> gives you
 the same list of errors with a testable label representing the error.</p>
 
-<div class="highlight highlight-rb"><pre>outcome.errors.details
+<div class="highlight highlight-source-ruby"><pre>outcome.errors.details
 <span class="pl-c"># =&gt; {:credit_card=&gt;[{:error=&gt;:missing}], :item=&gt;[{:type=&gt;"object", :error=&gt;:invalid_type}], :options=&gt;[{:name=&gt;"\"gift_wrapped\"", :value=&gt;"\"yes\"", :error=&gt;:invalid_nested}]}</span></pre></div>
 
 <p>Detailed errors can also be manually added during the execute call by passing a
 symbol to <code>#add</code> instead of a string.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">execute</span>
   errors.add(<span class="pl-c1">:monster</span>, <span class="pl-c1">:no_passage</span>)
 <span class="pl-k">end</span></pre></div>
 
@@ -1053,7 +1053,7 @@ delegate validation to some other object. For example, if you have an
 interaction that updates a record, you might want that record to validate
 itself. By using the <code>#merge!</code> helper on <code>errors</code>, you can do exactly that.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateThing<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateThing<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   object <span class="pl-c1">:thing</span>
 
   <span class="pl-k">def</span> <span class="pl-en">execute</span>
@@ -1075,7 +1075,7 @@ interaction.</p>
 <p>Given an application with an <code>Account</code> model we'll create a new <code>Account</code> using
 the <code>CreateAccount</code> interaction.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-c"># GET /accounts/new</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># GET /accounts/new</span>
 <span class="pl-k">def</span> <span class="pl-en">new</span>
   <span class="pl-smi">@account</span> <span class="pl-k">=</span> <span class="pl-c1">CreateAccount</span>.<span class="pl-k">new</span>
 <span class="pl-k">end</span>
@@ -1095,7 +1095,7 @@ the <code>CreateAccount</code> interaction.</p>
 <p>The form used to create a new <code>Account</code> has slightly more information on the
 <code>form_for</code> call than you might expect.</p>
 
-<div class="highlight highlight-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_for <span class="pl-smi">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+<div class="highlight highlight-text-html-erb"><pre><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_for <span class="pl-smi">@account</span>, <span class="pl-c1">as:</span> <span class="pl-c1">:account</span>, <span class="pl-c1">url:</span> accounts_path <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
   <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:first_name</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
   <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.text_field <span class="pl-c1">:last_name</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
   <span class="pl-pse">&lt;%=</span><span class="pl-s1"> f.submit <span class="pl-s"><span class="pl-pds">'</span>Create<span class="pl-pds">'</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
@@ -1105,7 +1105,7 @@ the <code>CreateAccount</code> interaction.</p>
 <code>Account</code>. Defining <code>to_model</code> on the <code>CreateAccount</code> interaction tells the
 form to treat our interaction like an <code>Account</code>.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">CreateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   <span class="pl-c"># ...</span>
 
   <span class="pl-k">def</span> <span class="pl-en">to_model</span>
@@ -1116,7 +1116,7 @@ form to treat our interaction like an <code>Account</code>.</p>
 <p>Now our <code>form_for</code> call knows how to generate the correct URL and param name
 (i.e. <code>params[:account]</code>).</p>
 
-<div class="highlight highlight-erb"><pre># app/views/accounts/new.html.erb
+<div class="highlight highlight-text-html-erb"><pre># app/views/accounts/new.html.erb
 <span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_for <span class="pl-smi">@account</span> <span class="pl-k">do </span>|<span class="pl-smi">f</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
   <span class="pl-c">&lt;%# ... %&gt;</span>
 <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
@@ -1124,7 +1124,7 @@ form to treat our interaction like an <code>Account</code>.</p>
 <p>If you have an interaction that updates an <code>Account</code>, you can define <code>to_model</code>
 to return the object you're updating.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateAccount<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   <span class="pl-c"># ...</span>
 
   object <span class="pl-c1">:account</span>
@@ -1150,7 +1150,7 @@ particular, it is useful when <code>nil</code> is an acceptable value. For examp
 may optionally track your users' birthdays. You can use the <code>given?</code> predicate
 to see if an input was even passed to <code>run</code>.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateUser<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">UpdateUser<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   object <span class="pl-c1">:user</span>
   date <span class="pl-c1">:birthday</span>,
     <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
@@ -1166,7 +1166,7 @@ to see if an input was even passed to <code>run</code>.</p>
 it out of the hash. If you want to remove their birthday, set <code>birthday: nil</code>.
 And if you want to update it, pass in the new value as usual.</p>
 
-<div class="highlight highlight-rb"><pre>user <span class="pl-k">=</span> <span class="pl-c1">User</span>.find(...)
+<div class="highlight highlight-source-ruby"><pre>user <span class="pl-k">=</span> <span class="pl-c1">User</span>.find(...)
 <span class="pl-c"># Don't update their birthday.</span>
 <span class="pl-c1">UpdateUser</span>.run!(<span class="pl-c1">user:</span> user)
 <span class="pl-c"># Remove their birthday.</span>
@@ -1179,7 +1179,7 @@ And if you want to update it, pass in the new value as usual.</p>
 
 <p>ActiveInteraction creates a predicate method for every input defined by a filter. So if you have an input called <code>foo</code>, there will be a predicate method called <code>#foo?</code>. That method will tell you if the input was given (that is, if it was not <code>nil</code>).</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">SayHello<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:name</span>,
     <span class="pl-c1">default:</span> <span class="pl-c1">nil</span>
 
@@ -1206,7 +1206,7 @@ translations to your project. In Rails, these typically go into
 everything out backwards. Simply add translations for ActiveInteraction to your
 <code>hsilgne</code> locale.</p>
 
-<div class="highlight highlight-yml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-c"># config/locales/hsilgne.yml</span>
 <span class="pl-s"><span class="pl-ent">hsilgne:</span></span>
   <span class="pl-s"><span class="pl-ent">active_interaction:</span></span>
     <span class="pl-s"><span class="pl-ent">types:</span></span>
@@ -1233,7 +1233,7 @@ everything out backwards. Simply add translations for ActiveInteraction to your
 
 <p>Then set your locale and run interactions like normal.</p>
 
-<div class="highlight highlight-rb"><pre><span class="pl-k">class</span> <span class="pl-en">I18nInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">I18nInteraction<span class="pl-e"> &lt; ActiveInteraction::Base</span></span>
   string <span class="pl-c1">:name</span>
 <span class="pl-k">end</span>
 
