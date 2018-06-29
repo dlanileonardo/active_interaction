@@ -103,6 +103,25 @@ module ActiveInteraction
       result
     end
 
+    def run_yield!(&block)
+      return unless valid?
+
+      result_or_errors = run_callbacks(:execute) do
+        begin
+          execute(&block)
+        rescue Interrupt => interrupt
+          interrupt.errors
+        end
+      end
+
+      self.result =
+        if result_or_errors.is_a?(ActiveInteraction::Errors)
+          errors.merge!(result_or_errors)
+        else
+          result_or_errors
+        end
+    end
+
     #
     module ClassMethods
       def new(*)
@@ -128,8 +147,12 @@ module ActiveInteraction
       # @return (see Runnable#run!)
       #
       # @raise (see Runnable#run!)
-      def run!(*args)
-        new(*args).send(:run!)
+      def run!(*args, &block)
+        if block_given?
+          new(*args).send(:run_yield!, &block)
+        else
+          new(*args).send(:run!)
+        end
       end
     end
   end

@@ -328,6 +328,35 @@ describe ActiveInteraction::Base do
     end
   end
 
+  describe '.run_yield(inputs = {})' do
+    let(:thing) { rand }
+
+    context 'with block' do
+      before { inputs[:thing] = thing }
+
+      before do
+        described_class.class_exec do
+          def execute
+            3.times do
+              yield 1
+            end
+          end
+        end
+      end
+
+      it 'return a block' do
+        expect { |b| described_class.run!(inputs, &b) }.to yield_control
+        expect { |b| described_class.run!(inputs, &b) }.to yield_control.exactly(3).times
+      end
+
+      it 'return number yielded' do
+        number = described_class.run!(inputs) { |number| number + 1 }
+        expect(number).to be_a(Integer)
+        expect(number).to equal(3)
+      end
+    end
+  end
+
   describe '#inputs' do
     let(:described_class) { InteractionWithFilter }
     let(:other_val) { SecureRandom.hex }

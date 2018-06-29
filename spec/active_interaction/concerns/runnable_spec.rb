@@ -264,6 +264,29 @@ describe ActiveInteraction::Runnable do
     end
   end
 
+  describe '.run!(block)' do
+    context 'with block' do
+      before do
+        klass.class_exec do
+          def execute
+            yield 1
+          end
+        end
+      end
+
+      it 'return a block' do
+        expect { |b| klass.run!(&b) }.to yield_control
+        expect { |b| klass.run!(&b) }.to yield_control.exactly(1).times
+      end
+
+      it 'return return number yielded' do
+        number = klass.run! { |number| number + 1 }
+        expect(number).to be_a(Integer)
+        expect(number).to equal(2)
+      end
+    end
+  end
+
   describe '.run!' do
     let(:result) { klass.run! }
 
